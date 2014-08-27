@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form name="user_form">
+<!--Анкета физ. лица-->        
+	<fieldset name="client_fiz" label="COM_ISHOP_USER_INFO_DEFAULT_LABEL">
+            <field
+                name="id"
+                type="hidden"
+                default="0"
+            />
+            <field
+                name="uid"
+                type="hidden"
+                default="0"
+            />
+            <field
+                name="fam"
+                type="text"
+                size="30"
+                label="COM_ISHOP_FAM"
+                description="COM_ISHOP_DESC_FAM"
+                class="inputbox validate-fio fio"
+                validate="fio"
+                default=""
+                required="true"
+            />
+            <field
+                name="im"
+                type="text"
+                size="30"
+                label="COM_ISHOP_IM"
+                description="COM_ISHOP_DESC_IM"
+                class="inputbox validate-fio fio"
+                validate="fio"
+                default=""
+                required="true"
+            />
+            <field
+                name="ot"
+                type="text"
+                size="30"
+                label="COM_ISHOP_OT"
+                description="COM_ISHOP_DESC_OT"
+                class="inputbox validate-fio fio"
+                validate="fio"
+                default=""
+                required="true"
+            />
+            <field
+                name="phone"
+                type="text"
+                size="20"
+                label="COM_ISHOP_PHONE"
+                description="COM_ISHOP_DESC_PHONE"
+                class="inputbox"
+                default=""
+                required="true"
+            />
+            <field
+                name="email"
+                type="text"
+                size="20"
+                label="COM_ISHOP_EMAIL"
+                description="COM_ISHOP_DESC_EMAIL"
+                class="inputbox validate-email"
+                default=""
+                validate="email"
+                required="true"
+            />
+            <field
+                name="address"
+                type="text"
+                size="80"
+                label="COM_ISHOP_ADDRESS"
+                description="COM_ISHOP_DESC_ADDRESS"
+                class="inputbox validate-address"
+                validate="addres"
+                default=""
+                required="true"
+            />
+            <field
+                    name="captcha"
+                    type="captcha"
+                    label="COM_USERS_CAPTCHA_LABEL"
+                    description="COM_USERS_CAPTCHA_DESC"
+                    validate="captcha"
+            />
+            
+	</fieldset>
+<!--Регистрация пользователя-->        
+	<fieldset name="juser_register"
+		  label="COM_ISHOP_REGISTRATION_DEFAULT_LABEL"
+                  id="ishop-user_register" 
+                  style="display:none"
+	>
+		<field name="name" type="hidden"
+			description="COM_USERS_REGISTER_NAME_DESC"
+			filter="string"
+			label="COM_USERS_REGISTER_NAME_LABEL"
+			message="COM_USERS_REGISTER_NAME_MESSAGE"
+			size="30"
+                        class="registration validate-fio"
+                        validate="fio"
+		/>
+
+		<field name="username" type="text"
+			class="validate-username registration"
+			description=""
+			filter="username"
+			label="COM_USERS_REGISTER_USERNAME_LABEL"
+			message="COM_USERS_REGISTER_USERNAME_MESSAGE"
+			size="30"
+			validate="username"
+		/>
+
+		<field name="password1" type="password"
+			autocomplete="off"
+			class="validate-password registration"
+			description=""
+			field="password2"
+			filter="raw"
+			label="COM_USERS_REGISTER_PASSWORD1_LABEL"
+			message="COM_USERS_REGISTER_PASSWORD1_MESSAGE"
+			size="30"
+			validate="equals"
+		/>
+
+		<field name="password2" type="password"
+			autocomplete="off"
+			class="validate-password registration"
+			description="COM_USERS_REGISTER_PASSWORD2_DESC"
+			filter="raw"
+			label="COM_USERS_REGISTER_PASSWORD2_LABEL"
+			message="COM_USERS_REGISTER_PASSWORD2_MESSAGE"
+			size="30"
+		/>
+
+		<field name="email1" type="hidden"
+			description="COM_USERS_REGISTER_EMAIL1_DESC"
+			field="id"
+			filter="string"
+			label="COM_USERS_REGISTER_EMAIL1_LABEL"
+			message="COM_USERS_REGISTER_EMAIL1_MESSAGE"
+			size="30"
+			unique="true"
+			validate="email"
+			class="registration"
+		/>
+
+		<field name="email2" type="hidden"
+			description="COM_USERS_REGISTER_EMAIL2_DESC"
+			field="email1"
+			filter="string"
+			label="COM_USERS_REGISTER_EMAIL2_LABEL"
+			message="COM_USERS_REGISTER_EMAIL2_MESSAGE"
+			size="30"
+			validate="equals"
+			class="registration"
+		/>
+
+	</fieldset>
+</form>

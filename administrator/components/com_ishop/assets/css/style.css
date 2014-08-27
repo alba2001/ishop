@@ -1,0 +1,20 @@
+.icon-48-products {
+      background-image: url(../images/l_products.png);
+      padding-left:60px!important;
+}
+
+.icon-48-zavod {
+      background-image: url(../images/l_zavods.png);
+      padding-left:60px!important;
+}
+.icon-48-order {
+      background-image: url(../images/l_orders.png);
+      padding-left:60px!important;
+}
+.icon-32-parse {
+      background-image: url(../images/icon-32-parse.png);
+}
+.icon-32-parse_continue  {
+      background-image: url(../images/icon-32-parse.png);
+}
+

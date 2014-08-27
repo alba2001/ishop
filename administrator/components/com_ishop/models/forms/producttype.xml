@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fieldset name="producttype_fields">
+
+        <field name="id" type="text" default="0" label="COM_ISHOP_FORM_LBL_PRODUCTTYPE_ID"
+                     readonly="true" class="readonly"
+                     description="" /> 
+        <field name="name" type="text"
+              label="COM_ISHOP_FORM_LBL_PRODUCTTYPE_NAME"
+              description="" 
+              required="true" 
+              filter="raw"
+              size="80"
+              maxlength="255" /> 
+        <field name="alias" type="text"
+              label="COM_ISHOP_FORM_LBL_PRODUCTTYPE_ALIAS"
+              description="" 
+              filter="raw"
+              readonly="true" class="readonly"
+              size="80"
+              maxlength="255" /> 
+        <field name="cena_mag" type="text" default="" 
+                label="COM_ISHOP_PRODUCT_CENA_MAG"
+                description="COM_ISHOP_PRODUCT_CENA_MAG_DESC" /> 
+        <field name="cena_tut" type="text" default="" 
+                label="COM_ISHOP_PRODUCT_CENA_TUT"
+                description="COM_ISHOP_PRODUCT_CENA_TUT_DESC" /> 
+    </fieldset> 
+</form>

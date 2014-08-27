@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fieldset>
+
+        <field name="id" type="text" default="0" label="COM_ISHOP_FORM_LBL_ZAVOD_ID"
+                     readonly="true" class="readonly"
+                     description="JGLOBAL_FIELD_ID_DESC" /> 
+        <field name="name" type="text"
+              label="COM_ISHOP_FORM_LBL_ZAVOD_NAME"
+              description="COM_ISHOP_FORM_DESC_ZAVOD_NAME" 
+              required="true" 
+              filter="raw"
+              size="80"
+              maxlength="255" /> 
+        <field name="alias" type="text"
+              label="COM_ISHOP_FORM_LBL_ZAVOD_ALIAS"
+              description="COM_ISHOP_FORM_DESC_ZAVOD_ALIAS" 
+              required="true" 
+              filter="raw"
+              size="50"
+              maxlength="50" /> 
+        <field name="base_url" type="text"
+              label="COM_ISHOP_FORM_LBL_ZAVOD_URL"
+              description="COM_ISHOP_FORM_DESC_ZAVOD_URL" 
+              required="true" 
+              filter="raw"
+              size="80"
+              maxlength="255" /> 
+        <field name="catalog_url" type="text"
+              label="COM_ISHOP_FORM_LBL_CATALOG_URL"
+              description="COM_ISHOP_FORM_DESC_CATALOG_URL" 
+              required="true" 
+              filter="raw"
+              size="80"
+              maxlength="255" /> 
+        <field name="products" type="textarea"
+              label="COM_ISHOP_FORM_LBL_ZAVOD_PRODUCTS"
+              description="COM_ISHOP_FORM_DESC_ZAVOD_PRODUCTS" 
+              required="true" 
+              rows="20" 
+              cols="5" /> 
+        <field name="created_by" type="createdby" default="" 
+              label="COM_ISHOP_FORM_LBL_ZAVOD_CREATED_BY"
+              description="COM_ISHOP_FORM_DESC_ZAVOD_CREATED_BY"  /> 
+        <field
+            name="state"
+            type="list"
+            label="JSTATUS"
+            description="JFIELD_PUBLISHED_DESC"
+            class="inputbox"
+            size="1"
+            default="1">
+            <option value="1">JPUBLISHED</option>
+            <option value="0">JUNPUBLISHED</option>
+        </field> 
+
+        <field name="checked_out" type="hidden" filter="unset" />
+        <field name="checked_out_time" type="hidden" filter="unset" /> 
+
+    </fieldset> 
+</form>

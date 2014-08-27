@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<field
+		name="id"
+		type="text"
+		default="0"
+		label="JGLOBAL_FIELD_ID_LABEL"
+		class="readonly"
+		readonly="true"
+        />
+
+	<field
+		name="parent_id"
+		type="categories"
+		label="COM_CATEGORIES_FIELD_PARENT_LABEL"
+        />
+        <field name="category_id" type="categories" default="0" 
+                label="COM_ISHOP_PRODUCT_CATEGORY"
+                
+                description="COM_ISHOP_PRODUCT_CATEGORY_DESC" /> 
+
+<!--        <field 
+                name="producttype_id" 
+                type="sql" 
+                default="0" 
+                label="COM_ISHOP_PRODUCTTYPE" 
+                query="SELECT id, name FROM #__ishop_producttypes" 
+                key_field="id" 
+                value_field="name" >        
+                <option value="0">COM_ISHOP_SELECT_PRODUCTTYPE</option>
+	</field>-->
+	<field
+		name="path"
+		type="text"
+		label="CATEGORIES_PATH_LABEL"
+		description="CATEGORIES_PATH_DESC"
+		class="readonly"
+		size="40"
+		readonly="true"/>
+
+	<field
+		name="name"
+		type="text"
+		label="JGLOBAL_TITLE"
+		description="JFIELD_TITLE_DESC"
+		class="inputbox"
+		size="40"
+		required="true"/>
+
+	<field
+		name="alias"
+		type="text"
+		label="JFIELD_ALIAS_LABEL"
+		description="JFIELD_ALIAS_DESC"
+		class="readonly"
+		readonly="true"
+                />
+
+	<field
+		name="source_url"
+		type="text"
+		label="COM_ISHOP_SOURCE_URL"
+		description="JFIELD_SOURCE_URL_DESC"
+		class="readonly"
+		readonly="true"
+                />
+	<field
+		name="img"
+		type="media"
+                directory="stories"
+		label="COM_ISHOP_IMAG"
+                />
+	<field
+		name="note"
+		type="text"
+		label="JFIELD_NOTE_LABEL"
+		description="JFIELD_NOTE_DESC"
+		class="inputbox"
+		size="40"/>
+
+	<field
+		name="description"
+		type="editor"
+		label="JGLOBAL_DESCRIPTION"
+		description="COM_CATEGORIES_DESCRIPTION_DESC"
+		class="inputbox"
+		filter="JComponentHelper::filterText"
+		buttons="true"
+		hide="readmore,pagebreak"/>
+
+	<field
+		name="parser_id"
+		type="text"
+		label="COM_ISHOP_PARSER_ID"
+		description="COM_ISHOP_PARSER_ID_DESC"
+                />
+
+	<field
+		name="parser_id"
+		type="text"
+		label="COM_ISHOP_PARSER_ID"
+		description="COM_ISHOP_PARSER_ID_DESC"
+                size="10"
+                />
+
+	<field
+		name="category_sourse_path"
+		type="text"
+		label="COM_ISHOP_SEOURSE_PATH"
+		description="COM_ISHOP_SEOURSE_PATH_DESC"
+                size="100"
+                />
+
+</form>

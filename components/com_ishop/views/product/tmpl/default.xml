@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Продукт" option="View">
+	</layout>
+	<fields name="params">
+		<fieldset 
+            name="basic"
+			label="Укажите параметры продукта">
+            <field
+                name="item_id"
+                label="ИД продукта"
+                require="true"
+                description="Укажите ИД продукта">
+            </field>
+            <field
+                name="site"
+                type="text"
+                label="Номер сайта"
+                require="true"
+                description="Укажите ИД сайта">
+            </field>
+		</fieldset>
+	</fields>
+</metadata>

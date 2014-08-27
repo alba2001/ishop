@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Заказ" option="View">
+	</layout>
+        <fields name="request" >
+            <fieldset name="request" label="Параметры заказа">
+                <field name="order_id" type="text" default="1" label="Укажите ИД заказа" description="">
+                </field>		
+            </fieldset>
+	</fields>
+        
+</metadata>

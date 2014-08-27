@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form
+	addrulepath="/administrator/components/com_ishop/models/rules"
+>
+	<fieldset name="order_fields">
+		<field
+			name="id"
+			type="hidden"
+		/>
+		<field
+			name="ch_status"
+			type="hidden"
+		/>
+		<field
+			name="userid"
+			type="orderuser"
+			label="COM_ISHOP_CUSTOMER"
+			description="COM_ISHOP_CUSTOMER_DESC"
+		/>
+                <field
+                        name="order_status_id"
+                        type="orderstatus"
+                        label="COM_ISHOP_ORDER_STATUS"
+                        description="COM_ISHOP_ORDER_STATUS_DESC"
+                />
+                <field
+                        name="oplata_id"
+                        type="orderoplata"
+                        label="COM_ISHOP_ORDER_OPLATA"
+                        description="COM_ISHOP_ORDER_OPLATA_DESC"
+                        readonly="true"
+                />
+                <field
+                        name="dostavka_id"
+                        type="orderdostavka"
+                        label="COM_ISHOP_ORDER_DOSTAVKA"
+                        description="COM_ISHOP_ORDER_DOSTAVKA_DESC"
+                        readonly="true"
+                />
+                <field
+                    name="order_dt"
+                    type="text"
+                    class="inputbox"
+                    multiple="false"
+                    label="COM_ISHOP_ORDER_DATE"
+                    description="COM_ISHOP_ORDER_DATE_DESC"
+                    readonly="true"
+                ></field>
+                <field
+                    name="sum"
+                    type="text"
+                    class="inputbox"
+                    multiple="false"
+                    label="COM_ISHOP_ORDER_SUM"
+                    description="COM_ISHOP_ORDER_SUM_DESC"
+                    readonly="true"
+                ></field>
+            </fieldset>
+</form>

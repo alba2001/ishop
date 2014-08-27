@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form
+	addrulepath="/administrator/components/com_ishop/models/rules"
+>
+	<fieldset name="user_fields">
+		<field
+			name="id"
+			type="hidden"
+		/>
+		<field
+			name="fam"
+			type="text"
+			label="COM_ISHOP_ISHOP_FIELD_FAM_LABEL"
+			description="COM_ISHOP_ISHOP_FAM_NAME_DESC"
+			size="100"
+			class="inputbox validate-fio"
+			required="true"
+			default=""
+		/>
+		<field
+			name="im"
+			type="text"
+			label="COM_ISHOP_ISHOP_FIELD_IM_LABEL"
+			description="COM_ISHOP_ISHOP_IM_NAME_DESC"
+			size="100"
+			class="inputbox validate-fio"
+			required="true"
+			default=""
+		/>
+		<field
+			name="ot"
+			type="text"
+			label="COM_ISHOP_ISHOP_FIELD_OT_LABEL"
+			description="COM_ISHOP_ISHOP_OT_NAME_DESC"
+			size="100"
+			class="inputbox validate-fio"
+			required="true"
+			default=""
+		/>
+                <field
+                        name="uid"
+                        type="user"
+                        label="COM_ISHOP_ISHOP_SYSUSER_LABEL"
+                        desc="COM_ISHOP_ISHOP_SYSUSER_DESC"
+                        />
+                        
+                <field
+                    name="phone"
+                    type="text"
+                    size="20"
+                    label="COM_ISHOP_PHONE"
+                    description="COM_ISHOP_DESC_PHONE"
+                    class="inputbox"
+                    default=""
+                    required="true"
+                />
+                <field
+                    name="email"
+                    type="text"
+                    size="20"
+                    label="COM_ISHOP_EMAIL"
+                    description="COM_ISHOP_DESC_EMAIL"
+                    class="inputbox validate-email"
+                    default=""
+                    validate="email"
+                    required="true"
+                />
+                <field
+                    name="address"
+                    type="text"
+                    size="80"
+                    label="COM_ISHOP_ADDRESS"
+                    description="COM_ISHOP_DESC_ADDRESS"
+                    class="inputbox validate-address"
+                    default=""
+                    required="true"
+                />
+            </fieldset>
+</form>

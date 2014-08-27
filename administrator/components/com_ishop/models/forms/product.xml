@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form
+	addrulepath="/administrator/components/com_ishop/models/rules"
+>
+    <fieldset name="product">
+
+        <field name="id" type="text" default="0" 
+                label="COM_ISHOP_PRODUCT_ID"
+                readonly="true" class="readonly"
+                description="COM_ISHOP_PRODUCT_ID_DESC" /> 
+        <field name="name" type="text"
+                label="COM_ISHOP_PRODUCT_NAME"
+                description="COM_ISHOP_PRODUCT_NAME_DESC" 
+                required="true" 
+                filter="raw"
+                size="80"
+                maxlength="255" /> 
+        <field name="dopinfo" type="editor" default="" 
+                label="COM_ISHOP_PRODUCT_DOPINFO"
+                description="COM_ISHOP_PRODUCT_DOPINFO_DESC" /> 
+        <field name="cena_mag" type="text" default="" 
+                label="COM_ISHOP_PRODUCT_CENA_MAG"
+                description="COM_ISHOP_PRODUCT_CENA_MAG_DESC" /> 
+        <field name="cena_tut" type="text" default="" 
+                label="COM_ISHOP_PRODUCT_CENA_TUT"
+                description="COM_ISHOP_PRODUCT_CENA_TUT_DESC" /> 
+        <field name="created_by" type="createdby" default="" 
+              label="COM_ISHOP_PRODUCT_CREATED_BY"
+              readonly="true" class="readonly"
+              size="80"
+              description="COM_ISHOP_PRODUCT_CREATED_BY_DESC"  /> 
+        <field name="created_dt" type="text" default="" 
+              label="COM_ISHOP_PRODUCT_CREATED_DT"
+              readonly="true" class="readonly"
+              size="80"
+              description=""  /> 
+        <field
+            name="state"
+            type="list"
+            label="JSTATUS"
+            description="JFIELD_PUBLISHED_DESC"
+            class="inputbox"
+            size="1"
+            default="1">
+            <option value="1">JPUBLISHED</option>
+            <option value="0">JUNPUBLISHED</option>
+        </field> 
+        <field name="available" type="checkbox" 
+            label="COM_ISHOP_PRODUCTS_AVIALABLE" 
+            description="" value="1" default="0" 
+        />
+
+        <field name="recommended_flag" type="checkbox" 
+            label="COM_ISHOP_PRODUCTS_RECOMENDED" 
+            description="" value="1" default="0" 
+        />
+
+        <field name="checked_out" type="hidden" filter="unset" />
+        <field name="checked_out_time" type="hidden" filter="unset" /> 
+
+        <field name="product_image" type="media" directory="stories" 
+            label="COM_ISHOP_PRODUCTS_IMAGE" description="COM_ISHOP_PRODUCTS_IMAGE_DESC" />
+    </fieldset> 
+
+</form>

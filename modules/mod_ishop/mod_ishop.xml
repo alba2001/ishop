@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.1.0" client="site" method="upgrade">
+	<name>Ishop</name>
+	<author>Konstantin Ovcharenko</author>
+	<creationDate>August 8th, 2014</creationDate>
+	<copyright>Copyright (c) 2010 - 2014 Konstantin Ovchsrenko Ltd. All rights reserved.</copyright>
+	<authorEmail>alba2001@meta.ua</authorEmail>
+	<authorUrl>www.vini-cloud.ru</authorUrl>
+	<version>1.0.0</version>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<description>ISHOP_MOD_ISHOP_CONTENT_DESCRIPTION</description>
+    <files>
+        <filename>mod_ishop.xml</filename>
+        <filename module="mod_ishop">mod_ishop.php</filename>
+        <filename>helper.php</filename>
+        <filename>index.html</filename>
+        <folder>tmpl</folder>
+    </files>
+    <config>
+		<fields name="params">
+			<fieldset name="basic" addfieldpath="/administrator/components/com_k2/elements/">
+                            <field name="itemCount" type="text" size="4" default="5" label="ISHOP_ITEM_COUNT" description=""/>
+                            <field name="order_goods" type="list" default="nothing" label="Группы товаров" description="">
+                                    <option value="nothing">Нет</option>
+                                    <option value="hits">Популярные товары</option>
+                                    <option value="novinka_dt">Новинки</option>
+                                    <option value="discounts">Скидки</option>
+                                    <option value="seen_products">Просмотренные товары</option>
+                            </field>
+
+                        </fieldset>
+                </fields>
+
+    </config>
+</extension>

@@ -1,0 +1,11 @@
+DELETE FROM `#__menu_types` WHERE `menutype` = 'com_ishop';
+DELETE FROM `#__menu` WHERE `menutype` = 'com_ishop';
+DROP TABLE IF EXISTS `#__ishop_categories`;
+DROP TABLE IF EXISTS `#__ishop_orders`;
+DROP TABLE IF EXISTS `#__ishop_order_statuses`;
+DROP TABLE IF EXISTS `#__ishop_products`;
+DROP TABLE IF EXISTS `#__ishop_users`;
+DROP TABLE IF EXISTS `#__ishop_dostavka`;
+DROP TABLE IF EXISTS `#__ishop_oplata`;
+DROP TABLE IF EXISTS `#__ishop_sites`;
+DROP TABLE IF EXISTS `#__ishop_product_category`;

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Категория" option="View">
+	</layout>
+	<fields name="params">
+		<fieldset 
+            name="basic"
+			label="Выберите категорию">
+            <field
+                name="item_id"
+                query="SELECT `id`, `name` FROM #__ishop_categories ORDER BY `id`"
+                type="sql"
+                key_field="id" 
+                value_field="name"
+                label="Категория"
+                require="true"
+                description="Выбор категории">
+            </field>
+		</fieldset>
+	</fields>
+</metadata>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Список продуктов" option="View">
+	</layout>
+	<fields name="params">
+		<fieldset 
+            name="basic"
+			label="Список продуктов">
+            <field
+                name="product_group"
+                type="list"
+                label="Группа"
+                require="true"
+                description="Выбор группу продуктов">
+                <option value="0">COM_ISHOP_ALL_PRODUCTS</option>
+                <option value="1">COM_ISHOP_NEW_PRODUCTS</option>
+                <option value="2">COM_ISHOP_SPETS_PRODUCTS</option>
+                <option value="3">COM_ISHOP_PRODUCTS_AVIALABLE</option>
+            </field>
+		</fieldset>
+	</fields>
+</metadata>
