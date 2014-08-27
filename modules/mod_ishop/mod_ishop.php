@@ -26,6 +26,10 @@ switch ($order_goods)
     case 'discounts':
         $items = modIshopContentHelper::getDisconts($limit);
         break;
+    case 'new_flag':
+    case 'recommended_flag':
+        $items = modIshopContentHelper::getByFlag($order_goods, $limit);
+        break;
     default :
     $items = modIshopContentHelper::getGoods(array($limit, $order_goods));
 }

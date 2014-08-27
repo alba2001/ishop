@@ -14,6 +14,11 @@ jimport('incase.init');
 						<li>
 							<div class="com_uvelir_item  ">
 
+								<div class="labels <?=$item->label?>">
+									<div class="label ico1"></div>
+									<div class="label ico2"></div>
+									<div class="label ico3"></div>
+								</div>
 
 								<div class="image">
 									<a href="<?=$item->link?>">

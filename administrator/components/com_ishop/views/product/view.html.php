@@ -68,9 +68,9 @@ class IshopViewProduct extends JViewLegacy
             } else {
                 $checkedOut = false;
             }
-            if(isset($this->item->desc))
+            if(isset($this->item->dopinfo))
             {
-                $img = json_decode($this->item->desc)->img_large;
+                $img = json_decode($this->item->dopinfo)->img_large;
                 $img = incase::thumb($img, $this->item->id, 300, 300);
                 $artikul = $this->item->artikul;
             }

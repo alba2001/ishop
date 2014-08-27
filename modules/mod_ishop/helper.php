@@ -76,7 +76,29 @@ class modIshopContentHelper
         	$products = $db->loadObjectList();
         	foreach ($products as &$product)
         	{
-                    $this->_store_product_attributes($product);
+                    self::_store_product_attributes($product);
+                }
+
+        	return $products;
+        }
+
+        /**
+         * В зависимости от флага (Новинки, рекомендованые)
+         * @param string $flag
+         * @param int $limit
+         * @return type
+         */
+        public function getByFlag($flag,$limit)
+        {
+        	$db = JFactory::getDbo();
+        	$query = self::_build_product_query($db);
+        	$query->where('`'.$flag.'` = 1');
+        	$query->orderby('RAND()');
+        	$db->setQuery($query,0,$limit);
+        	$products = $db->loadObjectList();
+        	foreach ($products as &$product)
+        	{
+                    self::_store_product_attributes($product);
                 }
 
         	return $products;
@@ -117,7 +139,7 @@ class modIshopContentHelper
                     {
                         if($product->id == $seen_product)
                         {
-                            $this->_store_product_attributes($product);
+                            self::_store_product_attributes($product);
                             $ret_products[] = $product;
                         }
                     }
@@ -140,6 +162,6 @@ class modIshopContentHelper
             
             $product->image = incase::thumb($desc->img_large, $product->id, 100, 100);
             $product->cena_tut = self::_get_cena_tut($product->id);
-            $product->recommended_flag = $product->recommended_flag;
+            $product->label = ComponentHelper::getProductLabel($product);
         }
 }

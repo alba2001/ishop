@@ -147,6 +147,33 @@ class ComponentHelper
 	}
         
         /**
+         * Изображение стикеров
+         * @param obj $product
+         * @return string
+         */
+	public static function getProductLabel($product)
+	{
+            $labels = array();
+            // Скидки
+            if($product->cena_tut AND $product->cena_mag > $product->cena_tut)
+            {
+                $labels[] = 'percent';
+            }
+            // Рекомендованые товары
+            if($product->recommended_flag)
+            {
+                $labels[] = 'thumb';
+            }
+            // Новинки
+            if($product->new_flag)
+            {
+                $labels[] = 'new';
+            }
+            
+            return implode(' ', $labels);
+        }
+        
+        /**
          * Стоимость изделия с учетом его среднего веса и типа товара
          * @param int $product_id
          * @param int $category_id

@@ -15,9 +15,9 @@
                 filter="raw"
                 size="80"
                 maxlength="255" /> 
-        <field name="dopinfo" type="editor" default="" 
-                label="COM_ISHOP_PRODUCT_DOPINFO"
-                description="COM_ISHOP_PRODUCT_DOPINFO_DESC" /> 
+        <field name="desc" type="editor" default="" 
+                label="COM_ISHOP_PRODUCT_DESC"
+                description="COM_ISHOP_PRODUCT_DESC_DESC" /> 
         <field name="cena_mag" type="text" default="" 
                 label="COM_ISHOP_PRODUCT_CENA_MAG"
                 description="COM_ISHOP_PRODUCT_CENA_MAG_DESC" /> 
@@ -52,6 +52,11 @@
 
         <field name="recommended_flag" type="checkbox" 
             label="COM_ISHOP_PRODUCTS_RECOMENDED" 
+            description="" value="1" default="0" 
+        />
+
+        <field name="new_flag" type="checkbox" 
+            label="COM_ISHOP_PRODUCTS_NEW" 
             description="" value="1" default="0" 
         />
 

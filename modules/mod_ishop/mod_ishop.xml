@@ -19,11 +19,12 @@
     <config>
 		<fields name="params">
 			<fieldset name="basic" addfieldpath="/administrator/components/com_k2/elements/">
-                            <field name="itemCount" type="text" size="4" default="5" label="ISHOP_ITEM_COUNT" description=""/>
+                            <field name="itemCount" type="text" size="4" default="5" label="Количество товаров" description=""/>
                             <field name="order_goods" type="list" default="nothing" label="Группы товаров" description="">
                                     <option value="nothing">Нет</option>
                                     <option value="hits">Популярные товары</option>
-                                    <option value="novinka_dt">Новинки</option>
+                                    <option value="new_flag">Новинки</option>
+                                    <option value="recommended_flag">Рекомендуемые</option>
                                     <option value="discounts">Скидки</option>
                                     <option value="seen_products">Просмотренные товары</option>
                             </field>
