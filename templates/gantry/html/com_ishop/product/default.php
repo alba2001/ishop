@@ -37,7 +37,7 @@ else
 		<?php echo $this->item->name ?>
 	</h1>
 
-	<div class="item_leftside">
+	<div class="item_leftside image">
 		<div class="big-image">
                     <?php $href = incase::thumb($images->img_large, $this->item->id, 315, 495)?>
                         <a class="fancybox" href="<?=$href?>" rel='{handler: "iframe"}'>
@@ -97,13 +97,21 @@ else
 			</tbody>
 
 		</table>
-
+        </div>
 		<div class="button-block">
 
-			<a href="javascript:void(0)" class="button" onclick="ishop_caddy_add({ action:'<?php echo JRoute::_('index.php'); ?>', data:{ option: 'com_ishop', task: 'caddy.add', item_id: '<?php echo $this->item->id?>', razmer_key: $('#item_razmer').val(), '<?=$token?>':'1' }});">
-				<span class="ico"></span>
-				Добавить в корзину
-			</a>
+                        <input class="addButton button" id="add_<?php echo $this->item->id?>" type="button" value="Купить"
+                                onclick="ishop_caddy_add({
+                                action:'<?php echo JRoute::_('index.php'); ?>',
+                                data:{
+                                        option:     'com_ishop',
+                                        task:       'caddy.add',
+                                        item_id:    '<?php echo $this->item->id?>',
+                                        '<?=$token;?>':'1'
+                                        }
+                                });"
+                        />		
+                    
 				</div>
 
 				<div class="price-block">
