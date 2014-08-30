@@ -22,7 +22,7 @@ defined('_JEXEC') or die;
             <?php echo JText::_('MOD_CADDY_RUB')?>
         </li>
     </ul>
-    <form action="<?php echo JRoute::_('index.php'); ?>" method="post" name="adminForm" id="adminForm">
+    <form action="<?php echo JRoute::_('index.php'); ?>" method="post" name="mod_caddy" id="adminForm">
         <input type="submit" value="<?=JText::_('MOD_CADDY_CHECKOUT')?>">
         <input type="hidden" name="option" value="com_ishop" />
         <input type="hidden" name="view" value="caddy" />

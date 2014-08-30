@@ -46,6 +46,8 @@ JHtml::_( 'form.token' );
 			?>
 			<div class="com_ishop_item <?=$novinka.' '.$spets_predl?>">
 
+                                <div class="labels <?=$item->label?>"></div>
+                                
 				<div class="image">
 					<a href="<?=$href?>">
 						<img class="product_list_img" src="<?=$src?>" alt="<?=$item->name?>"/>
@@ -90,7 +92,7 @@ JHtml::_( 'form.token' );
 	<?php echo $this->pagination->getListFooter(); ?>
 </div>
 <input type="hidden" name="option" value="com_ishop" />
-<input type="hidden" name="view" value="products" />
+<input type="hidden" name="view" value="<?=$this->_defaultModel?>" />
 <input type="hidden" name="item_id" value="" />
 <input type="hidden" name="products_group" value="<?=$this->products_group?>" />
 <?php if(!isset($this->show_menu_groups) OR !$this->show_menu_groups):?>

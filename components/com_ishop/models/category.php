@@ -46,9 +46,14 @@ class IshopModelCategory extends JModelList
         // Load the parameters.
         $params = $app->getParams();
         $params_array = $params->toArray();
+        
+        $_category_id = $app->getUserStateFromRequest('ishop.category_id', 'category_id', 0);
         if(isset($params_array['item_id'])){
-            $this->setState('category.id', $params_array['item_id']);
+            $category_id = $params_array['item_id'];
+            $app->setUserState('ishop.category_id', $category_id);
         }
+        $this->setState('category.id', $category_id);
+        
         $this->setState('params', $params);
         
         

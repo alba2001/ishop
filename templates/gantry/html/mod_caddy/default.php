@@ -13,9 +13,9 @@ defined('_JEXEC') or die;
     <form 
         action="<?php echo JRoute::_('index.php'); ?>" 
         method="post" 
-        name="adminForm"
+        name="mod_caddy"
         class="btn-header"
-        id="adminForm"
+        id="mod_caddy"
     >
         <dl>
             <span id="mod_caddy_product_sum"><?php echo $caddy_data['sum']?></span>

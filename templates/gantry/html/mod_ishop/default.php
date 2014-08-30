@@ -12,7 +12,7 @@ jimport('incase.init');
 
 					<?php foreach ($items as $key=>$item){?>
 						<li>
-							<div class="com_uvelir_item  ">
+							<div class="com_ishop_item  ">
 
 								<div class="labels <?=$item->label?>"></div>
 
@@ -34,10 +34,10 @@ jimport('incase.init');
 
 								<div class="left">
 									<input class="addButton button" id="add_<?php echo $item->id?>" type="button" value="Купить"
-										onclick="uvelir_caddy_add({
+										onclick="ishop_caddy_add({
 										action:'<?php echo JRoute::_('index.php'); ?>',
 										data:{
-											option: 'com_uvelir',
+											option: 'com_ishop',
 											task: 'caddy.add',
 											item_id: '<?php echo $item->id?>',
 											'<?php echo JSession::getFormToken()?>':'1'
@@ -56,3 +56,4 @@ jimport('incase.init');
 		
 	<?php }?>
 </div>
+<script src="<?=JURI::root()?>components/com_ishop/assets/js/caddy.js"></script>
