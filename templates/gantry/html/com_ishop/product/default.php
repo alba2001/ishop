@@ -9,13 +9,14 @@
 
 // no direct access
 defined('_JEXEC') or die;
+
 jimport('incase.init');
 require_once JPATH_ROOT.'/components/com_ishop/helpers/ishop.php';
 $dir_dest = JPATH_ROOT.'/media/com_ishop/images/';
 $url_dest = JURI::base().'media/com_ishop/images/';
 $token = JSession::getFormToken();
 
-$images = json_decode($this->item->desc);
+$images = json_decode($this->item->dopinfo);
 
     // Обработка корзины
 if(isset($this->caddy[$this->item->id.'_0']))
@@ -38,9 +39,9 @@ else
 
 	<div class="item_leftside">
 		<div class="big-image">
-                    <?php $href = IshopHelper::get_src($images->img_large, $this->item->id)?>
+                    <?php $href = incase::thumb($images->img_large, $this->item->id, 315, 495)?>
                         <a class="fancybox" href="<?=$href?>" rel='{handler: "iframe"}'>
-				<img src="<?=incase::thumb($src = $images->img_large, $this->item->id, 100, 100)?>" src="/images/load.gif" alt="<?=$this->item->name?>"/>
+				<img src="<?=incase::thumb($images->img_large, $this->item->id, 100, 100)?>" src="/images/load.gif" alt="<?=$this->item->name?>"/>
 			</a>
 		</div>
 	</div>
