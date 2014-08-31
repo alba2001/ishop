@@ -139,4 +139,10 @@ else
     jQuery(document).ready(function($) {
         $(".fancybox").fancybox();
     });
-5</script>
+</script>
+<?php
+  $comments = JPATH_ROOT.'/components/com_jcomments/jcomments.php';
+  if (file_exists($comments)) {
+    require_once($comments);
+    echo JComments::showComments($this->item->id, 'com_ishop', $this->item->name);
+  }
