@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension
+	type="module"
+	version="2.5"
+	client="site"
+	method="upgrade">
+	<name>mod_ishop_search</name>
+	<author>Konstantin Ovcharenko</author>
+	<creationDate>August 2014</creationDate>
+	<copyright>Copyright (C) 2010 - 2014 Konstantin Ovcharenko.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>alba2001@meta.ua</authorEmail>
+	<authorUrl>www.vini-cloud.ru</authorUrl>
+	<version>2.5.0</version>
+	<description>MOD_ISHOP_SEARCH_XML_DESCRIPTION</description>
+	<files>
+		<filename module="mod_ishop_search">mod_ishop_search.php</filename>
+		<folder>tmpl</folder>
+		<filename>helper.php</filename>
+		<filename>index.html</filename>
+                <filename>mod_ishop_search.xml</filename>
+	</files>
+	<languages>
+		<language tag="ru-RU">language/ru-RU/ru-RU.mod_ishop_search.ini</language>
+		<language tag="ru-RU">language/ru-RU/ru-RU.mod_ishop_search.sys.ini</language>
+	</languages>
+	<help key="JHELP_EXTENSIONS_MODULE_MANAGER_ISHOP_SEARCH" />
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+                                <field name="layout" type="modulelayout"
+                                        label="JFIELD_ALT_LAYOUT_LABEL"
+                                        description="JFIELD_ALT_MODULE_LAYOUT_DESC" />		
+			</fieldset>
+		</fields>
+                
+	</config>
+</extension>
