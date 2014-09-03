@@ -150,3 +150,5 @@ else
     require_once($comments);
     echo JComments::showComments($this->item->id, 'com_ishop', $this->item->name);
   }
+  
+echo JHTML::_('content.prepare', '{loadposition recomended_products}');
