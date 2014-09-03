@@ -1,7 +1,7 @@
 <?php
 /**
  * @package		Ishop.Site
- * @subpackage	mod_usearch
+ * @subpackage	mod_ishop_search
  * @copyright	Copyright (C) 2010 - 2013 Konstantin Ovcharenko.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -9,59 +9,55 @@
 // no direct access
 defined('_JEXEC') or die;
 ?>
-<div id="mod_usearch_filter">
-    <form action="<?php echo JRoute::_('index.php'); ?>" method="get" name="usearchForm" id="usearchForm">
+<div id="mod_ishop_search_filter">
+    <form action="<?php echo JRoute::_('index.php'); ?>" method="get" name="ishop_searchForm" id="ishop_searchForm">
 
         <div class="block">
-            <label for="mod_usearch_text">
+            <label for="mod_ishop_search_text">
                 <span>Название: </span>
             </label>
-            <input type="text" id="mod_usearch_text" name="usearch_data[text]" value="<?=$usearch_data['text']?>" placeholder="" > 
+            <input type="text" id="mod_ishop_search_text" name="ishop_search_data[text]" value="<?=$ishop_search_data['text']?>" placeholder="" > 
         </div>   
 
         <div class="block">
-            <label for="mod_usearch_brand">
-                <span><?php echo JText::_('MOD_USEARCH_BRAND')?>: </span>
+            <label for="mod_ishop_search_brand">
+                <span><?php echo JText::_('MOD_ISHOP_SEARCH_BRAND')?>: </span>
             </label>
             <?=$brands?>
         </div>
 
         <div class="block no-label">
-            <label for="mod_usearch_available"><?=$available?><span>в наличии</span></label>
+            <label for="mod_ishop_search_available"><?=$available?><span><?=  JText::_('MOD_ISHOP_SEARCH_IN_STOCK')?></span></label>
         </div>
         
         <div class="block">
             <label>
-                <span>Цена (в рублях): </span>
+                <span><?=  JText::_('MOD_ISHOP_SEARCH_PRICE_RUB')?></span>
             </label>
             
-            <label for="mod_usearch_cena_from" class="left">
-                <span>от</span>
-                <input type="text" id="mod_usearch_cena_from" name="usearch_data[cena_from]" value="<?=$usearch_data['cena_from']?>" placeholder="" class="price"/>
+            <label for="mod_ishop_search_cena_from" class="left">
+                <span><?=  JText::_('MOD_ISHOP_SEARCH_FROM')?></span>
+                <input type="text" id="mod_ishop_search_cena_from" name="ishop_search_data[cena_from]" value="<?=$ishop_search_data['cena_from']?>" placeholder="" class="price"/>
             </label>
 
-            <label for="mod_usearch_cena_to" class="left">
-                <span>до</span>
-                <input type="text" id="mod_usearch_cena_to" name="usearch_data[cena_to]" value="<?=$usearch_data['cena_to']?>" placeholder="" class="price"/>
+            <label for="mod_ishop_search_cena_to" class="left">
+                <span><?=  JText::_('MOD_ISHOP_SEARCH_TO')?></span>
+                <input type="text" id="mod_ishop_search_cena_to" name="ishop_search_data[cena_to]" value="<?=$ishop_search_data['cena_to']?>" placeholder="" class="price"/>
             </label>
         </div>
 
         <div class="block">
-            <label for="mod_usearch_category">
-                <span><?php echo JText::_('MOD_USEARCH_CATEGORY')?>: </span>
+            <label for="mod_ishop_search_category">
+                <span><?php echo JText::_('MOD_ISHOP_SEARCH_CATEGORY')?>: </span>
             </label>
-            <?=$categories?>
+            <div id="mod_ishop_div_search_category">
+                <?=$categories?>
+            </div>
         </div>
         
-        <div class="block">
-            <label for="mod_usearch_artikul">
-                <span><?php echo JText::_('MOD_USEARCH_ARTIKUL')?>: </span>
-            </label>
-            <input type="text" name="usearch_data[artikul]" value="<?=$usearch_data['artikul']?>"/>
-        </div>
 
         <div class="block no-label last">
-            <input type="submit" class="button" value="Найти">        
+            <input type="submit" class="button" value="<?=JText::_('MOD_ISHOP_SEARCH_FIND')?>">        
         </div>
 
         <input type="hidden" name="option" value="com_ishop" />
@@ -70,3 +66,24 @@ defined('_JEXEC') or die;
         <?php echo JHtml::_('form.token'); ?>
     </form>
 </div>
+<script>
+    jQuery(document).ready(function($){
+        $('#mod_ishop_search_brand').change(function(){
+            var brand_id = $(this).val();
+            var category_id = $('#mod_ishop_search_category').val();
+            $.ajax({
+                type: 'GET',
+                data:{
+                    option: 'com_ishop',
+                    task: 'modsearch.get_category_list',
+                    brand_id: brand_id,
+                    category_id: category_id
+                },
+                url: '<?=JURI::base()?>index.php?<?=JSession::getFormToken()?>=1',
+                success: function(html){
+                    $('#mod_ishop_div_search_category').html(html);
+               }
+           });
+        });
+    });
+</script>

@@ -8,6 +8,7 @@
 
 // no direct access
 defined('_JEXEC') or die;
+require_once JPATH_ROOT.'/components/com_ishop/helpers/ishop.php';
 
 /**
  * @package		Joomla.Site
@@ -21,10 +22,11 @@ class modIshop_searchHelper
             $attribs = array();
             $db =& JFactory::getDBO();
             $query = $db->getQuery(TRUE)
+                    ->select('id')
                     ->select('name')
-                    ->select('alias')
-                    ->from('#__ishop_sites')
+                    ->from('#__ishop_categories')
                     ->where('`state` = 1')
+                    ->where('`parent_id` = 1')
             ;
             
             $db->setQuery($query);
@@ -38,7 +40,7 @@ class modIshop_searchHelper
                 foreach ($list as $row)
                 {
                     $state[] = JHTML::_('select.option'
-                            , $row->alias
+                            , $row->id
                             , JText::_($row->name)
                     );
                 }
@@ -54,24 +56,20 @@ class modIshop_searchHelper
                             , false );
          }
          
-        function getListCategory($selected)
+        function getListCategory($selected, $parent_id = 1)
         {
             $attribs = array();
-            $db =& JFactory::getDBO();
-            $query = $db->getQuery(TRUE)
-                    ->select('name')
-                    ->select('alias')
-                    ->from('#__ishop_categories')
-                    ->where('`state` = 1')
-            ;
             
-            $db->setQuery($query);
+            $category_model = IshopHelper::getModel('category');
+            $list = $category_model->get_children($parent_id);
+            $parent_level = $category_model->get_parent_level($parent_id);
+            
             $state = array();
             $state[] = JHTML::_('select.option'
                     , 0
                     , JText::_('MOD_ISHOP_SEARCH_CATEGORY')
             );
-            if ($list = $db->LoadObjectList())
+            if ($list)
             {
                 foreach ($list as $row)
                 {
@@ -79,7 +77,7 @@ class modIshop_searchHelper
                     {
                         $state[] = JHTML::_('select.option'
                                 , $row->id
-                                , JText::_($row->name)
+                                , str_repeat("...|", $row->level-$parent_level-1).JText::_($row->name)
                         );
                     }
                 }

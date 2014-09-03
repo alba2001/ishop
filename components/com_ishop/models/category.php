@@ -20,6 +20,9 @@ class IshopModelCategory extends JModelList
     
     var $_item = null;
     
+    private $_parent_level;
+
+
     /**
      * Method to auto-populate the model state.
      *
@@ -166,4 +169,61 @@ class IshopModelCategory extends JModelList
         return $query;
     }
 
+    public function get_category($category_id)
+    {
+        if(!$category_id)
+        {
+            return new stdClass();
+        }
+        $db = JFactory::getDbo();
+        $query = $db->getQuery(TRUE)
+                ->select('*')
+                ->from('#__ishop_categories')
+                ->where('`id` = '.$category_id)
+        ;
+        $db->setQuery($query);
+        return $db->loadObject();
+    }
+
+    /**
+     * Вывод списка дочерних категорий
+     * @param type $category_id
+     * @return object
+     */
+    public function get_children($category_id)
+    {
+        if(!$category_id)
+        {
+            return new stdClass();
+        }
+        $db = JFactory::getDbo();
+        $children_categories = new stdClass();
+        $parent_category = $this->get_category($category_id);
+        $this->_parent_level = $parent_category->level;
+        if($parent_category)
+        {
+            $query = $db->getQuery(TRUE)
+                    ->select('*')
+                    ->from('#__ishop_categories')
+                    ->where('`lft` > '.$parent_category->lft)
+                    ->where('`rgt` < '.$parent_category->rgt)
+                    ->where('`state` = 1')
+                    ->order('`lft`')
+            ;
+            $db->setQuery($query);
+            $children_categories = $db->loadObjectList();
+        }
+        
+        return $children_categories;
+    }
+    
+    public function get_parent_level()
+    {
+        if(!isset($this->_parent_level))
+        {
+            $parent_category = $this->get_category($category_id);
+            $this->_parent_level = $parent_category->level;
+        }
+        return $this->_parent_level;
+    }
 }

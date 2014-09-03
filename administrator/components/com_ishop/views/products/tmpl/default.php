@@ -91,14 +91,11 @@ $href = 'index.php?option=com_ishop&view=product';
                 <th class='left'>
                     <?php echo JText::_('COM_ISHOP_PRODUCTS_NAME'); ?>
                 </th>
-                <th class='left'>
-                    <?php echo JHtml::_('grid.sort',  'COM_ISHOP_ARTIKUL', 'a.artikul', $listDirn, $listOrder); ?>
+                <th>
+                    <?php echo JText::_('COM_ISHOP_PRODUCT_CENA_MAG'); ?>
                 </th>
-                <th class='left'>
-                    <?php echo JText::_('COM_ISHOP_PRODUCTS_CREATED_BY'); ?>
-                </th>
-                <th class='left'>
-                    <?php echo JText::_('COM_ISHOP_PRODUCTS_CATEGORY_PATH'); ?>
+                <th>
+                    <?php echo JText::_('COM_ISHOP_PRODUCT_CENA_TUT'); ?>
                 </th>
                 <th width="5%">
                     <?php echo JText::_('JPUBLISHED'); ?>
@@ -151,13 +148,10 @@ foreach ($this->items as $i => $item) :
                         </a>
                     </td>
                     <td>
-                        <?php echo $item->artikul; ?>
+                        <?php echo $item->cena_mag; ?>
                     </td>
                     <td>
-                        <?php echo $item->created_by; ?>
-                    </td>
-                    <td>
-                        <?php echo $this->get_category_path($item->category_id); ?>
+                        <?php echo $item->cena_tut; ?>
                     </td>
 
                         <?php if (isset($this->items[0]->state)) { ?>

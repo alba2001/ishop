@@ -4,8 +4,8 @@ defined('_JEXEC') or die;
 ?>
 
 <div class="custom search-module">
-    <form action="<?php echo JRoute::_('index.php'); ?>" method="get" name="usearchForm_short" id="usearchForm">
-        <input type="text" name="usearch_data[text]" value="" placeholder="<?=  JText::_('MOD_ISHOP_SEARCH_SEARCH')?>" > 
+    <form action="<?php echo JRoute::_('index.php'); ?>" method="get" name="ishop_searchForm_short" id="ishop_searchForm">
+        <input type="text" name="ishop_search_data[text]" value="" placeholder="<?=  JText::_('MOD_ISHOP_SEARCH_SEARCH')?>" > 
         <a href="rasshirennyj-poisk"><?=  JText::_('MOD_ISHOP_SEARCH_SEARCH_WIDTH')?></a>
         <input type="submit" name="" class="search-button" value="">        
 

@@ -20,12 +20,13 @@ if(!$ishop_search_data)
         'cena_to' => '',
         'available' => '0',
         'artikul' => '',
+        'text' => '',
     );
 }
 require_once dirname(__FILE__).'/helper.php';
 
 $brands = modIshop_searchHelper::getListBrands($ishop_search_data['brand']);
-$categories = modIshop_searchHelper::getListCategory($ishop_search_data['category']);
+$categories = modIshop_searchHelper::getListCategory($ishop_search_data['category'],$ishop_search_data['brand']);
 $available = modIshop_searchHelper::getCheckboxAvailable($ishop_search_data['available']);
 
 //echo '111';exit;

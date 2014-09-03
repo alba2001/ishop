@@ -44,6 +44,18 @@ abstract class IshopHelper
             return $src;
         }
         
+        /**
+         * Возвращаем объект модели по указанному имени
+         * @param streing $model_name
+         * @return object \model_class_name
+         */
+        public static function getModel($model_name)
+        {
+            $model_class_name = 'IshopModel'.ucfirst($model_name);
+            require_once JPATH_SITE.DS.'components'.DS.'com_ishop'.DS.'models'.DS.$model_name.'.php';
+            
+            return new $model_class_name;
+        }
 
 }
 

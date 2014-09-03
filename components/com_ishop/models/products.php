@@ -65,33 +65,34 @@ class IshopModelProducts extends JModelList {
         if(!$show_menu_groups)
         {
             // Обработка данных модуля фильтрации 
-                $init_usearch_data = array(
+                $init_ishop_search_data = array(
                     'brand' => '0',
                     'category' => '0',
                     'cena_from' => '',
                     'cena_to' => '',
                     'available' => '0',
                     'artikul' => '',
+                    'text' => '',
                 );
 
-            $usearch_data = JRequest::getVar('usearch_data', 
-                    JFactory::getApplication()->getUserState('com_ishop.usearch', $init_usearch_data),
+            $ishop_search_data = JRequest::getVar('ishop_search_data', 
+                    JFactory::getApplication()->getUserState('com_ishop.ishop_search', $init_ishop_search_data),
                     '','array');
-            if($usearch_data)
+            if($ishop_search_data)
             {
-                if(!isset($usearch_data['available']))
+                if(!isset($ishop_search_data['available']))
                 {
-                    $usearch_data['available'] = 0;
+                    $ishop_search_data['available'] = 0;
                 }
-                $this->setState('usearch_data.brand', $usearch_data['brand']);
-                $this->setState('usearch_data.category', $usearch_data['category']);
-                $this->setState('usearch_data.available', $usearch_data['available']);
-                $this->setState('usearch_data.cena_from', $usearch_data['cena_from']);
-                $this->setState('usearch_data.cena_to', $usearch_data['cena_to']);
-                $this->setState('usearch_data.artikul', $usearch_data['artikul']);
-                $this->setState('usearch_data.text', isset($usearch_data['text'])?$usearch_data['text']:'');
+                $this->setState('ishop_search_data.brand', $ishop_search_data['brand']);
+                $this->setState('ishop_search_data.category', $ishop_search_data['category']);
+                $this->setState('ishop_search_data.available', $ishop_search_data['available']);
+                $this->setState('ishop_search_data.cena_from', $ishop_search_data['cena_from']);
+                $this->setState('ishop_search_data.cena_to', $ishop_search_data['cena_to']);
+                $this->setState('ishop_search_data.artikul', $ishop_search_data['artikul']);
+                $this->setState('ishop_search_data.text', isset($ishop_search_data['text'])?$ishop_search_data['text']:'');
             }
-            JFactory::getApplication()->setUserState('com_ishop.usearch', $usearch_data);
+            JFactory::getApplication()->setUserState('com_ishop.ishop_search', $ishop_search_data);
         }
         
         
@@ -143,60 +144,63 @@ class IshopModelProducts extends JModelList {
         
         $query->where('`a`.`state` = 1');
 
-        // Filter by search in title
-        $search = $this->getState('filter.search');
-        if (!empty($search)) {
-                if (stripos($search, 'id:') === 0) {
-                        $query->where('a.id = '.(int) substr($search, 3));
-                } else {
-                        $search = $db->Quote('%'.$db->escape($search, true).'%');
-        $query->where('( a.name LIKE '.$search.' )');
-                }
-        }
+//        // Filter by search in title
+//        $search = $this->getState('filter.search');
+//        if (!empty($search)) {
+//                if (stripos($search, 'id:') === 0) {
+//                        $query->where('a.id = '.(int) substr($search, 3));
+//                } else {
+//                        $search = $db->Quote('%'.$db->escape($search, true).'%');
+//        $query->where('( a.name LIKE '.$search.' )');
+//                }
+//        }
         
         // Обрабртка данных модуля фильтра 
-            // Фильтр по виду изделия
             // Фильтр по наличию
-            if($filter = $this->getState('usearch_data.available', ''))
+            if($filter = $this->getState('ishop_search_data.available', ''))
             {
                 $query->where('available = 1');
             }
             
-            // Бренды
-            if($filter = $this->getState('usearch_data.brand', ''))
-            {
-                $query->where('`a`.`id`  IN (SELECT `product_id` FROM `#__ishop_product_category` WHERE `category_id` = '.$filter.')');
+            // Бренды и категории
+            $category_ids = array();
+            if($filter = $this->getState('ishop_search_data.category', ''))
+             {
+                $category_model = IshopHelper::getModel('category');
+                $children = $category_model->get_children($filter);
             }
-            
-            // Категории
-            if($filter = $this->getState('usearch_data.category', ''))
+            elseif($filter = $this->getState('ishop_search_data.brand', ''))
             {
+                $category_model = IshopHelper::getModel('category');
+                $children = $category_model->get_children($filter);
+            }
+            if(isset($children))
+            {
+                $category_ids = array($filter);
+                foreach ($children as $child)
+                {
+                    $category_ids[] = $child->id;
+                }
                 $query->join('INNER', '`#__ishop_product_category` AS prcat ON prcat.product_id = a.id');
-                $query->join('INNER', '`#__ishop_categories` AS c ON c.id = prcat.category_id');
-                $query->where('`c`.`parent_id` = '.$filter);
-            }
-            
-            if($filter = $this->getState('usearch_data.available', ''))
-            {
-                $query->where('available = 1');
+                $query->where('prcat.category_id IN ('.implode(',',$category_ids).')');
             }
             
             // Фильтр по цене
-            if($cena_from = (int)$this->getState('usearch_data.cena_from', ''))
+            if($cena_from = (int)$this->getState('ishop_search_data.cena_from', ''))
             {
                 $query->where('cena_tut >= "'.$cena_from.'"');
             }
-            if($cena_to = (int)$this->getState('usearch_data.cena_to', ''))
+            if($cena_to = (int)$this->getState('ishop_search_data.cena_to', ''))
             {
                 $query->where('cena_tut <= "'.$cena_to.'"');
             }
             
-            if($artikul = $this->getState('usearch_data.artikul', ''))
+            if($artikul = $this->getState('ishop_search_data.artikul', ''))
             {
                 $query->where('artikul = "'.$artikul.'"');
             }
             
-            if($search_text = $this->getState('usearch_data.text', ''))
+            if($search_text = $this->getState('ishop_search_data.text', ''))
             {
                 $query->where('`a`.`name` LIKE "%'.$search_text.'%"');
             }
@@ -208,7 +212,6 @@ class IshopModelProducts extends JModelList {
                 $query->where('cena_tut >= "0.01"');
                 
             }
-//            var_dump((string)$query);
         return $query;
     }
     /**
@@ -320,7 +323,6 @@ class IshopModelProducts extends JModelList {
             $ar_parents = $this->_db->loadResultArray();
             $ar_childrens = $this->_get_childrens($ar_parents);
             
-//            var_dump((string)$_query);
             return array_merge($ar_parents, $ar_childrens);
         }
         
