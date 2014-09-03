@@ -147,7 +147,7 @@ else
 <?php
 
 // Социальнве закладки
-echo JHTML::_('content.prepare', '{loadposition recomended_products}');
+echo JHTML::_('content.prepare', '{loadposition social_bookmarks}');
 
 // Комментарии
   $comments = JPATH_ROOT.'/components/com_jcomments/jcomments.php';
