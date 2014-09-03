@@ -145,10 +145,16 @@ else
     });
 </script>
 <?php
+
+// Социальнве закладки
+echo JHTML::_('content.prepare', '{loadposition recomended_products}');
+
+// Комментарии
   $comments = JPATH_ROOT.'/components/com_jcomments/jcomments.php';
   if (file_exists($comments)) {
     require_once($comments);
     echo JComments::showComments($this->item->id, 'com_ishop', $this->item->name);
   }
   
+//  Рекомендуемые товары
 echo JHTML::_('content.prepare', '{loadposition recomended_products}');
