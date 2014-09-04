@@ -64,7 +64,7 @@ defined('_JEXEC') or die;
 						<td>
 							<div class="image">
 								<a href="<?= $item['path'].'/'.$item['id'];?>">
-                                                                        <img src="<?=incase::thumb($item['src'],$item['id'], 315, 495)?>" alt="<?=$item['artikul']?>">
+                                                                        <img src="<?=incase::thumb($item['src'],$item['id'], 100, 100)?>" alt="<?=$item['artikul']?>">
 								</a>
 							</div>
 						</td>

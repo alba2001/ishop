@@ -61,12 +61,12 @@ class IshopViewOrder extends JViewLegacy {
         foreach($products as $key=>$value)
         {
             $product = $this->model->get_row('Product', $key);
-            $desc = json_decode($product->desc);
+            $desc = json_decode($product->dopinfo);
             $this->products[] = array(
                 'id'=>$product->id,
                 'name'=>$product->name,
                 'artikul'=>$product->artikul,
-                'img_src'=>$desc->img_small,
+                'img_src'=>$desc->img_large,
                 'price'=>$product->cena_tut,
                 'count' => $value['count'],
                 'sum' => $value['sum'],

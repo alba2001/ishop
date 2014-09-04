@@ -90,7 +90,7 @@ jimport('incase.init');
                                     <td class="first">
                                         <div class="image">
                                             <a href="<?=$href?>">
-                                                <img src="<?=incase::thumb($item['img_src'], $item['id'],97,97)?>" alt="<?=$item['artikul']?>">
+                                                <img src="<?=incase::thumb($item['img_src'], $item['id'],100,100)?>" alt="<?=$item['artikul']?>">
                                             </a>
                                         </div>
                                     </td>

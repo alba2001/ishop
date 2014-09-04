@@ -108,3 +108,4 @@ JHtml::_( 'form.token' );
 
 <?php echo JHtml::_('form.token'); ?>
 </form>
+<script src="<?=JURI::root()?>components/com_ishop/assets/js/caddy.js"></script>

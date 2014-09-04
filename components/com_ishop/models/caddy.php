@@ -13,6 +13,8 @@ defined('_JEXEC') or die;
 //jimport('joomla.application.component.model');
 require_once dirname(__FILE__) . '/kmodelform.php'; 
 require_once JPATH_ROOT.'/administrator/components/com_ishop/helpers/component.php';
+jimport('incase.init');
+
 /**
  * Ishop model.
  */
@@ -190,11 +192,9 @@ class IshopModelCaddy extends ModelKModelform
                 $product_data = $this->_get_product_data($id, $razmer_key);
                 $prises = ComponentHelper::getPrices($id, $razmer_key);
                 $body .= '<tr>';
-//            $body .= '<td'.$css_td.'><img src="'.$product_data['img_src'].'" />';
-                $body .= '<td style="background-image: url(http://www.kazanova.su/images/cat_position/images_upload/small/9700.jpg)"><img src="'.$product_data['img_src'].'" />';
+                $body .= '<td><img src="'.incase::thumb($product_data['img_src'],$id, 100, 100).'" />';
                 $body .= '</br></br><b>'.$product_data['artikul'].'</b></td>';
                 $body .= '<td'.$css_td.'>'.$value['count'].'</td>';
-            // $body .= '<td>'.$product_data['razmer'].'</td>';
                 $client_cena = (int)$prises['cena_tut']?$prises['cena_tut']:JTEXT::_('COM_ISHOP_MANAGER_CENA');
                 $body .= '<td'.$css_td.'>'.$client_cena.'</td>';
                 $body .= '<td'.$css_td.'>'.$value['sum'].'</td>';
@@ -315,20 +315,11 @@ class IshopModelCaddy extends ModelKModelform
         {
             $desc = json_decode($product->dopinfo);
             $src = $desc->img_large;
-            $ar_path = explode('.', $src);
-            $ext = $ar_path[count($ar_path)-1];
-            $file_dest = $dir_dest.$id.'.'.$ext;
-            if(file_exists($file_dest))
-            {
-                $src = $url_dest.$id.'.'.$ext;
-            }
 
-            $razmers = explode(',', $product->razmer);
             $result = array(
              'artikul'=>$product->artikul,
              'img_src'=>$src,
              'cena_tut'=>$prises['cena_tut'],
-             'razmer'=>$razmers[$razmer_key],
              );
         }
         return $result;

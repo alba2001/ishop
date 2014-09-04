@@ -190,12 +190,12 @@ class IshopModelOrder extends JModelLegacy
             {
                 foreach($product->purchases as $purchase)
                 {
-                    $desc = json_decode($purchase->desc);
+                    $desc = json_decode($purchase->dopinfo);
                     $purchases[] = array(
                         'id'=>$purchase->id,
                         'name'=>$purchase->name,
                         'artikul'=>$purchase->artikul,
-                        'img_src'=>$desc->img_small,
+                        'img_src'=>$desc->img_large,
                         'price'=>$purchase->cena_tut,
                     );
                 }
