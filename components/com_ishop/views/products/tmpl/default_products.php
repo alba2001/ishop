@@ -11,11 +11,12 @@ defined('_JEXEC') or die;
 jimport('incase.init');
 $token = JSession::getFormToken();
 JHtml::_( 'form.token' );
-//var_dump($this->item);
+
 ?>
 <style type="text/css">
     img.product_list_img{max-width: 117ph; max-height: 110px}
 </style>
+
 <form action="<?php echo JRoute::_('index.php'); ?>" method="post" name="adminForm" id="adminForm" class="ishop-items items-wrapper">
 	<div class="items">
 		<?php foreach ($this->items as $item) : ?>

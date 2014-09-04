@@ -80,7 +80,7 @@ else
 					</td>
 				</tr>
 
-				<?php if(isset($this->item->opisanije) AND $this->item->opisanije):?>
+				<?php if(isset($this->item->desc) AND $this->item->desc):?>
 					<tr>
 						<td class="left">
 							<span class="title">
@@ -89,7 +89,7 @@ else
 						</td>
 						<td class="right">
 							<span class="val">
-								<?=$this->item->opisanije?>
+								<?=$this->item->desc?>
 							</span>
 						</td>
 					</tr>

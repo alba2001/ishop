@@ -44,56 +44,50 @@ class IshopModelProducts extends JModelList {
      */
     protected function populateState($ordering = null, $direction = null) {
         
-        // Показываем меню продуктов или нет
-        $show_menu_groups = JRequest::getInt('show_menu_groups', TRUE);
-        $group = 0;
-        if($show_menu_groups)
-        {
-            // Вычисляем группу продуктов
-            $menu = JSite::getMenu();
-            $active = $menu->getActive();
-            $params = isset($active)?$active->params:NULL;
-            $product_group = isset($params)?$params->get('product_group'):0;
-            $group = JRequest::getInt('product_group',
-                    $product_group);
-            
-        }
-        $this->setState('products_group', $group);
-        $this->setState('show_menu_groups', $show_menu_groups);
+        /**
+         * Условия сортировки
+         */
+        $sort_order_products = JRequest::getVar('ishop_search_data', 0);
+        $this->setState('sort_order_products', $sort_order_products);
+        $ar_order_products = $this->get_ar_order_products();
+        $this->setState('sort_order_products', $sort_order_products);
+        $order = $ar_order_products[$sort_order_products]['ordering'];
+        $order_dir = $ar_order_products[$sort_order_products]['direction'];
+        $this->setState('order', $order);
+        $this->setState('order_dir', $order_dir);
         
-        // Если это не показ пунктов главного меню, то включаем фильтр
-        if(!$show_menu_groups)
-        {
-            // Обработка данных модуля фильтрации 
-                $init_ishop_search_data = array(
-                    'brand' => '0',
-                    'category' => '0',
-                    'cena_from' => '',
-                    'cena_to' => '',
-                    'available' => '0',
-                    'artikul' => '',
-                    'text' => '',
-                );
+        /**
+         * Фильтр (условия поиска) продуктов
+         */
+        // Обработка данных модуля фильтрации 
+            $init_ishop_search_data = array(
+                'brand' => '0',
+                'category' => '0',
+                'cena_from' => '',
+                'cena_to' => '',
+                'available' => '0',
+                'artikul' => '',
+                'text' => '',
+            );
 
-            $ishop_search_data = JRequest::getVar('ishop_search_data', 
-                    JFactory::getApplication()->getUserState('com_ishop.ishop_search', $init_ishop_search_data),
-                    '','array');
-            if($ishop_search_data)
+        $ishop_search_data = JRequest::getVar('ishop_search_data', 
+                JFactory::getApplication()->getUserState('com_ishop.ishop_search', $init_ishop_search_data),
+                '','array');
+        if($ishop_search_data)
+        {
+            if(!isset($ishop_search_data['available']))
             {
-                if(!isset($ishop_search_data['available']))
-                {
-                    $ishop_search_data['available'] = 0;
-                }
-                $this->setState('ishop_search_data.brand', $ishop_search_data['brand']);
-                $this->setState('ishop_search_data.category', $ishop_search_data['category']);
-                $this->setState('ishop_search_data.available', $ishop_search_data['available']);
-                $this->setState('ishop_search_data.cena_from', $ishop_search_data['cena_from']);
-                $this->setState('ishop_search_data.cena_to', $ishop_search_data['cena_to']);
-                $this->setState('ishop_search_data.artikul', $ishop_search_data['artikul']);
-                $this->setState('ishop_search_data.text', isset($ishop_search_data['text'])?$ishop_search_data['text']:'');
+                $ishop_search_data['available'] = 0;
             }
-            JFactory::getApplication()->setUserState('com_ishop.ishop_search', $ishop_search_data);
+            $this->setState('ishop_search_data.brand', $ishop_search_data['brand']);
+            $this->setState('ishop_search_data.category', $ishop_search_data['category']);
+            $this->setState('ishop_search_data.available', $ishop_search_data['available']);
+            $this->setState('ishop_search_data.cena_from', $ishop_search_data['cena_from']);
+            $this->setState('ishop_search_data.cena_to', $ishop_search_data['cena_to']);
+            $this->setState('ishop_search_data.artikul', $ishop_search_data['artikul']);
+            $this->setState('ishop_search_data.text', isset($ishop_search_data['text'])?$ishop_search_data['text']:'');
         }
+        JFactory::getApplication()->setUserState('com_ishop.ishop_search', $ishop_search_data);
         
         
         
@@ -109,11 +103,12 @@ class IshopModelProducts extends JModelList {
         
         
         if(empty($ordering)) {
-                $ordering = 'a.ordering';
+                $ordering = $ar_order_products[$sort_order_products]['ordering'];
+                $direction = $ar_order_products[$sort_order_products]['direction'];
         }
         
         // List state information.
-        parent::populateState($ordering, $direction);
+        parent::populateState($order, $order_dir);
     }
 
     /**
@@ -132,28 +127,12 @@ class IshopModelProducts extends JModelList {
         
         // Create a new query object.
         $db = $this->getDbo();
-        $query = $db->getQuery(true);
+        $query = parent::getListQuery()
+            ->select($this->getState('list.select', 'a.*'))
+            ->from('`#__ishop_products` AS a')
+            ->where('`a`.`state` = 1')
+        ;
 
-        // Select the required fields from the table.
-        $query->select(
-                $this->getState('list.select', 'a.*')
-        );
-        
-        $query->from('`#__ishop_products` AS a');
-            
-        
-        $query->where('`a`.`state` = 1');
-
-//        // Filter by search in title
-//        $search = $this->getState('filter.search');
-//        if (!empty($search)) {
-//                if (stripos($search, 'id:') === 0) {
-//                        $query->where('a.id = '.(int) substr($search, 3));
-//                } else {
-//                        $search = $db->Quote('%'.$db->escape($search, true).'%');
-//        $query->where('( a.name LIKE '.$search.' )');
-//                }
-//        }
         
         // Обрабртка данных модуля фильтра 
             // Фильтр по наличию
@@ -181,8 +160,7 @@ class IshopModelProducts extends JModelList {
                 {
                     $category_ids[] = $child->id;
                 }
-                $query->join('INNER', '`#__ishop_product_category` AS prcat ON prcat.product_id = a.id');
-                $query->where('prcat.category_id IN ('.implode(',',$category_ids).')');
+                $query->where('a.id IN (SELECT product_id FROM `#__ishop_product_category`  AS prcat WHERE prcat.category_id IN ('.implode(',',$category_ids).'))');
             }
             
             // Фильтр по цене
@@ -212,53 +190,19 @@ class IshopModelProducts extends JModelList {
                 $query->where('cena_tut >= "0.01"');
                 
             }
+            
+            $order_by = $this->_get_order();
+
+            if($order_by)
+            {
+                $query->order($order_by);
+            }
         return $query;
     }
-    /**
-     * Заглавие страницы 
-     * @return string 
-     */
-    public function getTitle()
-    {
-        $group = (int) $this->getState('products_group');
-        switch ($group)
-        {
-            case 1:
-                $title = JText::_('COM_ISHOP_PRODUCT_NEW');
-                break;
-            case 2:
-                $title = JText::_('COM_ISHOP_PRODUCT_SPETS');
-                break;
-            default :
-                $title = JText::_('COM_ISHOP_PRODUCT_ALL');
-        }
-        return $title;
-    }
     
+   
+
     /**
-     * Фильтр по группам изделий
-     * @return string 
-     */
-    private function _group_flt()
-    {
-        $group = (int) $this->getState('products_group');
-        switch ($group)
-        {
-            case 1: // Новинки
-                $where = '`novinka_dt` > "'.date('Y-m-d').'"';
-                break;
-            case 2: // Спецпредложения
-                $where = '`spets_predl` = "1"';
-                break;
-            case 3: // В наличии
-                $where = '`available` = "1"';
-                break;
-            default : // Все изделия
-                $where = '';
-        }
-        return $where;
-    }
-	/**
 	 * Returns a reference to the a Table object, always creating it.
 	 *
 	 * @param	type	The table type to instantiate
@@ -272,74 +216,44 @@ class IshopModelProducts extends JModelList {
 		return JTable::getInstance($type, $prefix, $config);
 	}
 
-        /**
-         *  Проверка принадлежит ли изделие к кольцам?
-         * ID вида продукта = 1
-         * @return boolean
-         */
-        public function isKoltsa($product_id)
+        private function _get_order()
         {
-            $list_koltsa_categories = $this->_get_product_vid_categories('1');
-            $query = &$this->_db->getQuery(true);
-            $query->select('category_id');
-            $query->from('#__ishop_products');
-            $query->where('id = '.$product_id);
-            $this->_db->setQuery($query);
-            $category_id = $this->_db->loadResult();
-            
-            return in_array($category_id, $list_koltsa_categories);
-        }
-
-        /**
-         * Получение списка категорий от вида продукта
-         * @param type $productvid_id
-         * @return type 
-         */
-        private function _get_product_vid_categories($productvid_id)
-        {
-            $category_ids = array();
-            $product_vid = &$this->getTable('Productvid');
-            if($product_vid->load($productvid_id))
+            $order = $this->getState('order');
+            if(!$order)
             {
-                $category_ids = $this->_get_categiry_ids($product_vid->alias);
+                return '';
             }
+            $order_dir = $this->getState('order_dir');
             
-            return $category_ids;
+            return $order.' '.$order_dir;
         }
 
         /**
-         * Находим категории и их подкатегории
-         * с наименованием совпадающим с псевдонимом вида изделия
-         * @param string $alias
+         * Данные по сортировке товаров
          * @return array
          */
-        private function _get_categiry_ids($alias)
+        public function get_ar_order_products()
         {
-            $_query = &$this->_db->getQuery(true);
-            $_query->select('id');
-            $_query->from('#__ishop_categories');
-            $_query->where('`alias` LIKE "%'.$alias.'%"');
-            $this->_db->setQuery($_query);
-            $ar_parents = $this->_db->loadResultArray();
-            $ar_childrens = $this->_get_childrens($ar_parents);
-            
-            return array_merge($ar_parents, $ar_childrens);
+            return array(
+                0=>array(
+                    'ordering'=>'', 
+                    'direction'=>'ASC', 
+                    'name'=>  JText::_('COM_ISHOP_ORDER_BY_NO_ORDER')
+                    ),
+                1=>array(
+                    'ordering'=>'cena_tut' , 
+                    'direction'=>'ASC', 
+                    'name'=>  JText::_('COM_ISHOP_ORDER_BY_CENA_MIN_TO_MAX')
+                    ),
+                2=>array('ordering'=>'cena_tut', 
+                    'direction'=>'DESC', 
+                    'name'=>  JText::_('COM_ISHOP_ORDER_BY_CENA_MAX_TO_MIN')
+                    ),
+                3=>array(
+                    'ordering'=>'hits', 
+                    'direction'=>'DESC', 
+                    'name'=>  JText::_('COM_ISHOP_ORDER_BY_HITS')
+                    ),
+            );
         }
-        
-        /**
-         * Находим подкатегории списка категорий
-         * @param array $ar_parents
-         * @return array
-         */
-        private function _get_childrens($ar_parents)
-        {
-            $_query = &$this->_db->getQuery(true);
-            $_query->select('id');
-            $_query->from('#__ishop_categories');
-            $_query->where('`parent_id` IN ('.  implode(',', $ar_parents).')');
-            $this->_db->setQuery($_query);
-            $ar_children = $this->_db->loadResultArray();
-            return $ar_children;
-            
-        }
-}
+  }

@@ -31,10 +31,9 @@ class IshopViewProducts extends JViewLegacy {
 //        $usearch_data = JRequest::getVar('usearch_data', 'array');
         $this->_model = $this->getModel();
         $this->items = $this->get('Items');
-        $this->products_group = (int) $this->_model->getState('products_group');
-        $this->show_menu_groups = (bool) $this->_model->getState('show_menu_groups', TRUE);
         $this->pagination	= $this->get('Pagination');
         $this->caddy = JFactory::getApplication()->getUserState('com_ishop.caddy', array());
+        $this->sort_order_products_list = $this->sort_order_select();
 
         // Check for errors.
         if (count($errors = $this->get('Errors'))) {
@@ -53,5 +52,16 @@ class IshopViewProducts extends JViewLegacy {
 	protected function _prepareDocument()
 	{
 	}
+        
+        /**
+         * Строим селект сортировки товаров
+         * @return JHTML object
+         */
+        protected function sort_order_select()
+        {
+            $selected = $this->_model->getState('sort_order_products',0);
+            return IshopHelper::PoductOrderList($selected, array('onchange'=>'this.form.submit()'));
+        }
+   
    
 }

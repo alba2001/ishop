@@ -10,13 +10,18 @@
 defined('_JEXEC') or die;
 jimport('incase.init');
 $token = JSession::getFormToken();
-JHtml::_( 'form.token' );
-//var_dump($this->item);
 ?>
 <style type="text/css">
     img.product_list_img{max-width: 117ph; max-height: 110px}
 </style>
+
+
 <form action="<?php echo JRoute::_('index.php'); ?>" method="post" name="adminForm" id="adminForm" class="ishop-items items-wrapper">
+        <?php if(isset($this->sort_order_products_list)): // Порядок сортировки товаров?>
+        <div class="product_sort_order">
+            <?=$this->sort_order_products_list?>
+        </div>
+        <?php endif?>
 	<div class="items">
 		<?php foreach ($this->items as $item) : ?>
 			<?php
@@ -93,9 +98,6 @@ JHtml::_( 'form.token' );
 <input type="hidden" name="view" value="products" />
 <input type="hidden" name="item_id" value="" />
 <input type="hidden" name="products_group" value="<?=$this->products_group?>" />
-<?php if(!isset($this->show_menu_groups) OR !$this->show_menu_groups):?>
-	<input type="hidden" name="show_menu_groups" value="0" />
-<?php endif;?>
 
 <?php echo JHtml::_('form.token'); ?>
 </form>

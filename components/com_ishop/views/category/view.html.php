@@ -24,7 +24,6 @@ class IshopViewCategory extends JViewLegacy {
     protected $pagination;
     protected $caddy;
 
-
     /**
      * Display the view
      */
@@ -36,6 +35,7 @@ class IshopViewCategory extends JViewLegacy {
         $this->pagination	= $this->get('Pagination');
         $this->caddy = JFactory::getApplication()->getUserState('com_ishop.caddy', array());
         $this->products_group = 0;
+        $this->sort_order_products_list = $this->sort_order_select();
 
         // Check for errors.
         if (count($errors = $this->get('Errors'))) {
@@ -56,5 +56,15 @@ class IshopViewCategory extends JViewLegacy {
                 $doc = JFactory::getDocument();
 		$doc->setTitle($this->item->name);
 	}
+        
+        /**
+         * Строим селект сортировки товаров
+         * @return JHTML object
+         */
+        protected function sort_order_select()
+        {
+            $selected = $this->_model->getState('sort_order_products',0);
+            return IshopHelper::PoductOrderList($selected, array('onchange'=>'this.form.submit()'));
+        }
    
 }

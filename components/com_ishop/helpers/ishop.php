@@ -12,13 +12,36 @@ jimport('incase.init');
 
 abstract class IshopHelper
 {
-	public static function isKoltsa($product_id)
+    /**
+     * Сортировка товаров
+     * @param int $selected
+     * @param array $attribs
+     * @return JHTML object
+     */
+	public static function PoductOrderList($selected = 0, $attribs = array())
 	{
-            require_once JPATH_COMPONENT.'/models/products.php';
+            require_once JPATH_SITE.DS.'components'.DS.'com_ishop'.DS.'models'.DS.'products.php';
             $products = new IshopModelProducts;
-            return $products->isKoltsa($product_id);
+            $ar_order_products = $products->get_ar_order_products();
+            $state = array();
+            foreach ($ar_order_products as $key=>$value)
+            {
+                $state[] = JHTML::_('select.option'
+                        , $key
+                        , $value['name']
+                );
+            }
+            return JHTML::_('select.genericlist'
+                            , $state
+                            , 'ishop_search_data'
+                            , $attribs
+                            , 'value'
+                            , 'text'
+                            , $selected
+                            , 'ishop_search_data'
+                            , false );
 	}
-
+        
 	public static function getURI($product_id)
 	{
             require_once JPATH_SITE.DS.'components'.DS.'com_ishop'.DS.'models'.DS.'product.php';
