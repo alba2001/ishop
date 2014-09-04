@@ -47,7 +47,8 @@ class IshopModelProducts extends JModelList {
         /**
          * Условия сортировки
          */
-        $sort_order_products = JRequest::getVar('ishop_search_data', 0);
+        $sort_order_products = JRequest::getVar('sort_order_products', 
+                JFactory::getApplication()->getUserState('com_ishop.sort_order_products', 0));
         $this->setState('sort_order_products', $sort_order_products);
         $ar_order_products = $this->get_ar_order_products();
         $this->setState('sort_order_products', $sort_order_products);
@@ -55,6 +56,7 @@ class IshopModelProducts extends JModelList {
         $order_dir = $ar_order_products[$sort_order_products]['direction'];
         $this->setState('order', $order);
         $this->setState('order_dir', $order_dir);
+        JFactory::getApplication()->setUserState('com_ishop.sort_order_products', $sort_order_products);
         
         /**
          * Фильтр (условия поиска) продуктов
@@ -66,7 +68,6 @@ class IshopModelProducts extends JModelList {
                 'cena_from' => '',
                 'cena_to' => '',
                 'available' => '0',
-                'artikul' => '',
                 'text' => '',
             );
 
@@ -84,7 +85,6 @@ class IshopModelProducts extends JModelList {
             $this->setState('ishop_search_data.available', $ishop_search_data['available']);
             $this->setState('ishop_search_data.cena_from', $ishop_search_data['cena_from']);
             $this->setState('ishop_search_data.cena_to', $ishop_search_data['cena_to']);
-            $this->setState('ishop_search_data.artikul', $ishop_search_data['artikul']);
             $this->setState('ishop_search_data.text', isset($ishop_search_data['text'])?$ishop_search_data['text']:'');
         }
         JFactory::getApplication()->setUserState('com_ishop.ishop_search', $ishop_search_data);
@@ -197,6 +197,8 @@ class IshopModelProducts extends JModelList {
             {
                 $query->order($order_by);
             }
+//            var_dump((string)$query);
+            
         return $query;
     }
     

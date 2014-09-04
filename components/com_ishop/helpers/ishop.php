@@ -33,12 +33,12 @@ abstract class IshopHelper
             }
             return JHTML::_('select.genericlist'
                             , $state
-                            , 'ishop_search_data'
+                            , 'sort_order_products'
                             , $attribs
                             , 'value'
                             , 'text'
                             , $selected
-                            , 'ishop_search_data'
+                            , 'sort_order_products'
                             , false );
 	}
         
