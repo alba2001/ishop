@@ -35,12 +35,12 @@ class IshopModelCaddy extends ModelKModelform
        {
            foreach($product->purchases as $purchase)
            {
-               $desc = json_decode($purchase->desc);
+               $desc = json_decode($purchase->dopinfo);
                $purchases[] = array(
                    'id'=>$purchase->id,
                    'name'=>$purchase->name,
                    'artikul'=>$purchase->artikul,
-                   'img_src'=>$desc->img_small,
+                   'img_src'=>$desc->img_large,
                    'price'=>$purchase->cena_tut,
                    );
            }
@@ -313,8 +313,8 @@ class IshopModelCaddy extends ModelKModelform
         $product = $this->getTable('Product');
         if($product->load($id))
         {
-            $desc = json_decode($product->desc);
-            $src = $desc->img_small;
+            $desc = json_decode($product->dopinfo);
+            $src = $desc->img_large;
             $ar_path = explode('.', $src);
             $ext = $ar_path[count($ar_path)-1];
             $file_dest = $dir_dest.$id.'.'.$ext;
@@ -489,13 +489,13 @@ class IshopModelCaddy extends ModelKModelform
                 if($product->load($id))
                 {
                     $prises = ComponentHelper::getPrices($id, $razmer_key);
-                    $desc = json_decode($product->desc);
+                    $desc = json_decode($product->dopinfo);
                     $item = array(
                         'id'=>$id,
                         'artikul'=>$product->artikul,
                         'razmer_key'=>$razmer_key,
                         'name'=>$product->name,
-                        'src'=>$desc->img_small,
+                        'src'=>$desc->img_large,
                         'price'=>$prises['cena_tut'],
                         'count'=>$value['count'],
                         'sum'=>$value['sum'],

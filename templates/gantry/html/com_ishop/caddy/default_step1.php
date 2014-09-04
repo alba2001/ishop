@@ -41,7 +41,7 @@ $caddy = JFactory::getApplication()->getUserState('com_ishop.caddy');
                     <td class="first"> 
 	                	<div class="image">
                                     <a href="<?=$href?>">
-                                        <img src="<?=incase::thumb($item['src'],$item['id'], 315, 495)?>" alt="<?=$item['artikul']?>">
+                                        <img src="<?=incase::thumb($item['src'],$item['id'], 100, 100)?>" alt="<?=$item['artikul']?>">
                                     </a>
                                 </div>
 	                </td>
