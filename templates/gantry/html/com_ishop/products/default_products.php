@@ -64,7 +64,7 @@ $token = JSession::getFormToken();
 				<div class="right">
 					<?php $prises = ComponentHelper::getPrices($item->id); ?>
 
-					<?php if((int)$prises['cena_mag']):?>
+					<?php if((int)$prises['cena_tut']):?>
 						<span class="price"><?=incase::format( $prises['cena_tut'] )?></span>
 						<span class="rub"><?=' '.JTEXT::_('COM_ISHOP_RUB')?></span>
 					<?php else:?>
