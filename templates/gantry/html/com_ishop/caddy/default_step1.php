@@ -16,19 +16,19 @@ $caddy = JFactory::getApplication()->getUserState('com_ishop.caddy');
         <thead>
             <tr>
                 <th class="col1 first">
-                    <span>Фото</span>
+                    <span class="wr">Фото</span>
                 </th>
                 <th class="col2">
-                	<span>Наименование</span>
+                	<span class="wr">Наименование</span>
                 </th>
                 <th class="col3">
-                    <span>Количество</span>
+                    <span class="wr">Количество</span>
                 </th>
                 <th class="col4">
-            		<span>Цена</span>
+            		<span class="wr">Цена</span>
                 </th>
                 <th class="col5">
-            		<span>Сумма</span>
+            		<span class="wr">Сумма</span>
                 </th>
                 <th class="col6 last"></th>
             </tr>
@@ -39,13 +39,14 @@ $caddy = JFactory::getApplication()->getUserState('com_ishop.caddy');
                 <? $href = JRoute::_('index.php?option=com_ishop&alias=' . $id ); ?>
 	            <tr id="item_row_<?=$id?>">
                     <td class="first"> 
-	                	<div class="image">
+	                	<div class="image wr">
                                     <a href="<?=$href?>">
                                         <img src="<?=incase::thumb($item['src'],$item['id'], 100, 100)?>" alt="<?=$item['artikul']?>">
                                     </a>
                                 </div>
 	                </td>
 	                <td class="info">
+                      <div class="wr">
 	                	<?php if(isset($item['name']) AND $item['name']):?>
 	                		<div class="item_title">
 	                			<a href="<?=$href?>">
@@ -54,16 +55,18 @@ $caddy = JFactory::getApplication()->getUserState('com_ishop.caddy');
 	                		</div>
                         <?php endif;?>
 
-                		<div class="article">
-                			Артикул: <?=$item['artikul']?>
-                		</div>
+                		<div class="article">Артикул: <?=$item['artikul']?></div>
+                  </div>
 	                </td>
-	                <td>
-                        <span class="button com_ishop-arow arow_left" id="arow_left_<?=$id?>">-</span>
+	                <td class="count">
+                      <div class="wr">
+                        <span class="com_ishop-arow arow_left" id="arow_left_<?=$id?>"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24"><g id="icomoon-ignore"><line stroke-width="1" x1="" y1="" x2="" y2="" stroke="" opacity=""></line></g><path d="M3 11h18q0.414 0 0.707 0.293t0.293 0.707-0.293 0.707-0.707 0.293h-18q-0.414 0-0.707-0.293t-0.293-0.707 0.293-0.707 0.707-0.293z"></path></svg></span>
 	                    <input id="caddy_item_count_<?=$id?>" name="count[<?=$id?>]" size="1" class="caddy_item_count" type="text" rel="<?=$id?>" value="<?=$item['count']?>"/>
-                        <span class="button com_ishop-arow  arow_right" id="arow_right_<?=$id?>">+</span>
+                        <span class="com_ishop-arow  arow_right" id="arow_right_<?=$id?>"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24"><g id="icomoon-ignore"><line stroke-width="1" x1="" y1="" x2="" y2="" stroke="#449FDB" opacity=""></line></g><path d="M12 2q0.414 0 0.707 0.293t0.293 0.707v8h8q0.414 0 0.707 0.293t0.293 0.707-0.293 0.707-0.707 0.293h-8v8q0 0.414-0.293 0.707t-0.707 0.293-0.707-0.293-0.293-0.707v-8h-8q-0.414 0-0.707-0.293t-0.293-0.707 0.293-0.707 0.707-0.293h8v-8q0-0.414 0.293-0.707t0.707-0.293z"></path></svg></span>
+                      </div>
 	                </td>
 	                <td class="price">
+                      <div class="wr">
                         <?php if((int)$item['price']):?>
                             <span class="nowrap">
         	                	<span id="caddy_item_price_<?=$id?>">
@@ -74,15 +77,20 @@ $caddy = JFactory::getApplication()->getUserState('com_ishop.caddy');
                         <?php else:?>
                             <?=' '.JTEXT::_('COM_ISHOP_MANAGER_CENA')?>
                         <?php endif;?>
+                      </div>
 	                </td>
 	                <td class="caddy_item_sum">
+                      <div class="wr">
 	                	<span id="caddy_item_sum_<?=$id?>"><?=(int)$item['sum']?></span>
 	                	<span class="ruble"><?=JTEXT::_('COM_ISHOP_RUB')?></span>
+                      </div>
 	                </td>
 	                <td class="last">
+                      <div class="wr">
                         <div class="com_ishop-delete" id="delete_<?=$id?>">
-                        	<span class="com_ishop-arow button remove">x</span>
+                        	<span class="remove"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32"><g id="icomoon-ignore"><line stroke-width="1" x1="" y1="" x2="" y2="" stroke="#449FDB" opacity=""></line></g><path d="M25.333 5.333q0.573 0 0.953 0.38t0.38 0.953q0 0.563-0.385 0.948l-8.396 8.385 8.396 8.385q0.385 0.385 0.385 0.948 0 0.573-0.38 0.953t-0.953 0.38q-0.563 0-0.948-0.385l-8.385-8.396-8.385 8.396q-0.385 0.385-0.948 0.385-0.573 0-0.953-0.38t-0.38-0.953q0-0.563 0.385-0.948l8.396-8.385-8.396-8.385q-0.385-0.385-0.385-0.948 0-0.573 0.38-0.953t0.953-0.38q0.563 0 0.948 0.385l8.385 8.396 8.385-8.396q0.385-0.385 0.948-0.385z"></path></svg></span>
                         </div>
+                      </div>
 	                </td>
 	            </tr>
 	        <?php endforeach;?>
