@@ -19,27 +19,13 @@ class modK2CommentsHelper
 	public static function getIshopComments(&$params)
 	{
 
-		$mainframe = JFactory::getApplication();
 		$limit = $params->get('comments_limit', '5');
-		$user = JFactory::getUser();
-		$aid = $user->get('aid');
 		$db = JFactory::getDBO();
-		$cid = $params->get('category_id', NULL);
 
 		$jnow = JFactory::getDate();
 		$now = K2_JVERSION != '15' ? $jnow->toSql() : $jnow->toMySQL();
-		$nullDate = $db->getNullDate();
-
-		$model = K2Model::getInstance('Item', 'K2Model');
 
 		$componentParams = JComponentHelper::getParams('com_k2');
-
-		$query = "SELECT c.*, i.catid, i.title, i.alias, category.alias as catalias, category.name as categoryname
-		FROM #__k2_comments as c
-		LEFT JOIN #__k2_items as i ON i.id=c.itemID
-		LEFT JOIN #__k2_categories as category ON category.id=i.catid
-		WHERE i.published=1
-                ";
                 
 		$query = "SELECT c.id, c.username AS userName, c.comment AS commentText, c.date AS commentDate, category.id, i.name, i.alias, category.alias as catalias, category.name as categoryname
 		FROM #__jcomments as c, #__ishop_products as i, #__ishop_product_category as pcat, #__ishop_categories as category
