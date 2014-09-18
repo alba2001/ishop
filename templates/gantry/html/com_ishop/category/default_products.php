@@ -68,7 +68,7 @@ JHtml::_( 'form.token' );
 				<div class="right">
 					<?php $prises = ComponentHelper::getPrices($item->id); ?>
 
-					<?php if((int)$prises['cena_tut']):?>
+					<?php if((int)$prises['cena_mag']):?>
 						<span class="price"><?=incase::format( $prises['cena_tut'] )?></span>
 						<span class="rub"><?=' '.JTEXT::_('COM_ISHOP_RUB')?></span>
 					<?php else:?>
@@ -108,4 +108,3 @@ JHtml::_( 'form.token' );
 
 <?php echo JHtml::_('form.token'); ?>
 </form>
-<script src="<?=JURI::root()?>components/com_ishop/assets/js/caddy.js"></script>

@@ -9,7 +9,7 @@
 				name="object_group" 
 				type="jcommentsobjectgroup"
 				size="1" 
-				default="com_jcomments" 
+				default="com_ishop" 
 				label="COM_JCOMMENTS_COMMENTS_VIEW_OBJECT_GROUP_LABEL" 
 				description="COM_JCOMMENTS_COMMENTS_VIEW_OBJECT_GROUP_DESC" />
 

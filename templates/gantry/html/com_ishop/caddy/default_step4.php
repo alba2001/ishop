@@ -41,19 +41,19 @@ defined('_JEXEC') or die;
 			<thead>
 				<tr>
 					<th class="col1 first">
-						<span>Фото</span>
+						<span class="wr">Фото</span>
 					</th>
 					<th class="col2">
-						<span>Наименование</span>
+						<span class="wr">Наименование</span>
 					</th>
 					<th class="col3">
-						<span>Количество</span>
+						<span class="wr">Количество</span>
 					</th>
 					<th class="col4">
-						<span>Цена</span>
+						<span class="wr">Цена</span>
 					</th>
 					<th class="col5">
-						<span>Сумма</span>
+						<span class="wr">Сумма</span>
 					</th>
 				</tr>
 			</thead>
@@ -62,13 +62,14 @@ defined('_JEXEC') or die;
 					<?php $id = $item['id']?>
 					<tr>
 						<td>
-							<div class="image">
+							<div class="image wr">
 								<a href="<?= $item['path'].'/'.$item['id'];?>">
                                                                         <img src="<?=incase::thumb($item['src'],$item['id'], 100, 100)?>" alt="<?=$item['artikul']?>">
 								</a>
 							</div>
 						</td>
 						<td class="info">
+							<div class="wr">
 							<?php if(isset($this->item->name) AND $this->item->name):?>
 							<?php endif;?>
 							<div class="item_title">
@@ -87,21 +88,27 @@ defined('_JEXEC') or die;
 							<div class="article">
 								Артикул: <?=$item['artikul']?>
 							</div>
+						</div>
 						</td>
 						<td class="price">
-							<?=$item['count']?>
+                          <div class="wr" style="display: inline-block;
+vertical-align: middle;
+line-height: 104px;
+padding: 0;"><?=$item['count']?></div>
 						</td>
 						<td class="price">
-							<?php if((int)$item['price']):?>
-								<span id="caddy_item_price_<?=$id?>"><?=$item['price']?></span>
-								<span class="ruble"><?=JTEXT::_('COM_ISHOP_RUB')?></span>
-							<?php else:?>
-								<?=' '.JTEXT::_('COM_ISHOP_MANAGER_CENA')?>
-							<?php endif;?>
+							<div class="wr"><?php if((int)$item['price']):?>
+									<span id="caddy_item_price_<?=$id?>"><?=$item['price']?></span>
+									<span class="ruble"><?=JTEXT::_('COM_ISHOP_RUB')?></span>
+								<?php else:?>
+									<?=' '.JTEXT::_('COM_ISHOP_MANAGER_CENA')?>
+								<?php endif;?></div>
 						</td>
 						<td class="caddy_item_sum">
-							<span id="caddy_item_sum_<?=$id?>"><?=(int)$item['sum']?></span>
-							<span class="ruble"><?=JTEXT::_('COM_ISHOP_RUB')?></span>
+							<div class="wr">
+								<span id="caddy_item_sum_<?=$id?>"><?=(int)$item['sum']?></span>
+								<span class="ruble"><?=JTEXT::_('COM_ISHOP_RUB')?></span>
+							</div>
 						</td>
 					</tr>
 				<?php endforeach;?>
@@ -139,7 +146,7 @@ defined('_JEXEC') or die;
                 <div id="user_sogl_text" style="display: none;margin-top: 35px;">
                     <?=$this->user_sogl?>
                 </div>
-                <div class="chek" style="float: right;">
+              <div class="chek" style="float: right;padding-bottom:20px;">
                 	<input type="checkbox" name="user_sogl" id="user_sogl" value="1"/>
                 	<label for="user_sogl" style="display: inline-block;margin-bottom: 5px;vertical-align: middle;"><?=JTEXT::_('COM_ISHOP_USER_SOGL_LABEL')?></label>
                 </div>
@@ -153,4 +160,3 @@ defined('_JEXEC') or die;
 <?php else: ?>
 	<?=JTEXT::_('COM_ISHOP_CADDY_IS_EMPTY')?>
 <?php endif ?>
-

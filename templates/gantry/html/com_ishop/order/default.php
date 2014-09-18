@@ -16,69 +16,130 @@ jimport('incase.init');
 <h1><?=JTEXT::_('COM_ISHOP_ORDER')?> № <?=$this->item->id?></h1>
 
 <?/*<h4><?=JText::_('COM_ISHOP_CAN_PAY_MSG')?></h4>*/?>
-
+<div class="cart">
 <table class="table_size_small table_cols_2">
     <tr>
-        <td><b><?=JTEXT::_('COM_ISHOP_FIO').': '?></b></td>
-        <td><?=$this->user->fam.' '.$this->user->im.' '.$this->user->ot?></td>
+        <td>
+            <div class="wr">
+                <b><?=JTEXT::_('COM_ISHOP_FIO').': '?></b>
+            </div>
+        </td>
+        <td>
+            <div class="wr">
+                <?=$this->user->fam.' '.$this->user->im.' '.$this->user->ot?>
+            </div>
+        </td>
     </tr>
     <tr>
-        <td><b><?=JTEXT::_('COM_ISHOP_ADDRESS').': '?></b></td>
-        <td><?=$this->user->address?></td>
+        <td>
+            <div class="wr">
+                <b><?=JTEXT::_('COM_ISHOP_ADDRESS').': '?></b>
+            </div>
+        </td>
+        <td>
+            <div class="wr">
+                <?=$this->user->address?>
+            </div>
+        </td>
     </tr>
     <tr>
-        <td><b><?=JTEXT::_('COM_ISHOP_PHONE').': '?></b></th>
-            <td><?=$this->user->phone?></td>
-        </tr>
+        <td>
+            <div class="wr">
+                <b><?=JTEXT::_('COM_ISHOP_PHONE').': '?></b>
+            </div>
+        </td>
+        <td>
+            <div class="wr">
+                <?=$this->user->phone?>
+            </div>
+        </td>
+    </tr>
         <tr>
-            <td><b><?=JTEXT::_('COM_ISHOP_EMAIL').': '?></b></td>
-            <td><?=$this->user->email?></td>
+            <td>
+                <div class="wr">
+                    <b><?=JTEXT::_('COM_ISHOP_EMAIL').': '?></b>
+                </div>
+            </td>
+            <td>
+                <div class="wr">
+                    <?=$this->user->email?>
+                </div>
+            </td>
         </tr>
-        <tr>
-            <td><b><?=JTEXT::_('COM_ISHOP_ORDER_OPLATA').': '?></b></th>
-                <td><?=$this->sposob_oplaty?></td>
-            </tr>
-            <tr>
-                <td><b><?=JTEXT::_('COM_ISHOP_ORDER_DOSTAVKA').': '?></b></th>
-                    <td><?=$this->sposob_dostavki?></td>
-                </tr>
-                <tr>
-                    <td><b><?=JTEXT::_('COM_ISHOP_ITOGO').': '?></b></th>
-                        <td>
-                            <?php if((int)$this->total_sum):?>
-                                <?=$this->total_sum?>
-                                <span class="ruble"><?=JTEXT::_('COM_ISHOP_RUB')?></span>
-                            <?php else:?>
-                                <?=' '.JTEXT::_('COM_ISHOP_MANAGER_CENA')?>
-                            <?php endif;?>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><b><?=JTEXT::_('COM_ISHOP_CAN_PAY').': '?></b></th>
-                            <td>
-                                <?=ComponentHelper::getCheckoutSum($this->total_sum)?>
-                                <span class="ruble"><?=JTEXT::_('COM_ISHOP_RUB')?></span>
-                            </td>
-                        </tr>
-                    </table>
+    <tr>
+        <td>
+            <div class="wr">
+                <b><?=JTEXT::_('COM_ISHOP_ORDER_OPLATA').': '?></b>
+            </div>
+        </td>
+        <td>
+            <div class="wr">
+                <?=$this->sposob_oplaty?>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="wr">
+                <b><?=JTEXT::_('COM_ISHOP_ORDER_DOSTAVKA').': '?></b>
+            </div>
+        </td>
+        <td>
+            <div class="wr">
+                <?=$this->sposob_dostavki?>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="wr">
+                <b><?=JTEXT::_('COM_ISHOP_ITOGO').': '?></b>
+            </div>
+        </td>
+        <td>
+            <div class="wr">
+                <?php if((int)$this->total_sum):?>
+                    <?=$this->total_sum?>
+                    <span class="ruble"><?=JTEXT::_('COM_ISHOP_RUB')?></span>
+                <?php else:?>
+                    <?=' '.JTEXT::_('COM_ISHOP_MANAGER_CENA')?>
+                <?php endif;?>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="wr">
+                <b><?=JTEXT::_('COM_ISHOP_CAN_PAY').': '?></b>
+            </div>
+        </td>
+        <td>
+            <div class="wr">
+                <?=ComponentHelper::getCheckoutSum($this->total_sum)?>
+                <span class="ruble"><?=JTEXT::_('COM_ISHOP_RUB')?></span>
+            </div>
+        </td>
+    </tr>
+</table>
 
-                    <table class="cart">
+                
+                    <table>
                         <thead>
                             <tr>
                                 <th class="col1 first">
-                                    <span>Фото</span>
+                                    <span class="wr">Фото</span>
                                 </th>
                                 <th class="col2">
-                                    <span>Наименование</span>
+                                    <span class="wr">Наименование</span>
                                 </th>
                                 <th class="col3">
-                                    <span>Количество</span>
+                                    <span class="wr">Количество</span>
                                 </th>
                                 <th class="col4">
-                                    <span>Цена</span>
+                                    <span class="wr">Цена</span>
                                 </th>
                                 <th class="col5 last">
-                                    <span>Сумма</span>
+                                    <span class="wr">Сумма</span>
                                 </th>
                             </tr>
                         </thead>
@@ -88,7 +149,7 @@ jimport('incase.init');
                                 <? $href = JRoute::_('index.php?option=com_ishop&alias=' . $id ); ?>
                                 <tr>
                                     <td class="first">
-                                        <div class="image">
+                                        <div class="image wr">
                                             <a href="<?=$href?>">
                                                 <img src="<?=incase::thumb($item['img_src'], $item['id'],100,100)?>" alt="<?=$item['artikul']?>">
                                             </a>
@@ -96,36 +157,40 @@ jimport('incase.init');
                                     </td>
                                     <td class="info">
 
-                                        <div class="item_title">
-                                            <a href="<?=$href;?>">
-                                                <?=$item['name']?>
-                                            </a>
-                                        </div>
-
-                                        <div class="article">
-                                            Артикул: <?=$item['artikul']?>
+                                        <div class="wr">
+                                            <div class="item_title">
+                                                <a href="<?=$href;?>">
+                                                    <?=$item['name']?>
+                                                </a>
+                                            </div>
+                                            
+                                            <div class="article">
+                                                Артикул: <?=$item['artikul']?>
+                                            </div>
                                         </div>
                                     </td>
                                     <td class="">
-                                        <?=$item['count']?>
+                                        <div class="wr"><?=$item['count']?></div>
                                     </td>
                                     <td class="price">
-                                        <?php if((int)$item['price']):?>
-                                            <span class="nowrap">
-                                                <span id="caddy_item_price_<?=$id?>">
-                                                    <?=$item['price']?>
+                                        <div class="wr"><?php if((int)$item['price']):?>
+                                                <span class="nowrap">
+                                                    <span id="caddy_item_price_<?=$id?>">
+                                                        <?=$item['price']?>
+                                                    </span>
+                                                    <span class="ruble">
+                                                        <?=JTEXT::_('COM_ISHOP_RUB')?>
+                                                    </span>
                                                 </span>
-                                                <span class="ruble">
-                                                    <?=JTEXT::_('COM_ISHOP_RUB')?>
-                                                </span>
-                                            </span>
-                                        <?php else:?>
-                                            <?=' '.JTEXT::_('COM_ISHOP_MANAGER_CENA')?>
-                                        <?php endif;?>
+                                            <?php else:?>
+                                                <?=' '.JTEXT::_('COM_ISHOP_MANAGER_CENA')?>
+                                            <?php endif;?></div>
                                     </td>
                                     <td class="caddy_item_sum last">
-                                        <span id="caddy_item_sum_<?=$id?>"><?=(int)$item['sum']?></span>
-                                        <span class="ruble"><?=JTEXT::_('COM_ISHOP_RUB')?></span>
+                                        <div class="wr">
+                                            <span id="caddy_item_sum_<?=$id?>"><?=(int)$item['sum']?></span>
+                                            <span class="ruble"><?=JTEXT::_('COM_ISHOP_RUB')?></span>
+                                        </div>
                                     </td>
                                 </tr>
                                 <?php if(0 && $item['purchases']):?>
@@ -169,4 +234,4 @@ jimport('incase.init');
                         </tfoot>
 
                     </table>
-
+                </div>

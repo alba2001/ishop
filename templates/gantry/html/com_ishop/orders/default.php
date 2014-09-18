@@ -12,29 +12,31 @@ $href = JUri::base().'index.php?option=com_ishop&view=order&id=';
 $src = JURI::base().'components/com_ishop/assets/img/info_16.png';
 
 ?>
-<table class="cart">
-    <thead>
-        <tr>
-            <th><?=JText::_('COM_ISHOP_ORDER_ID')?></th>
-            <th><?=JText::_('COM_ISHOP_ORDER_DT')?></th>
-            <th><?=JText::_('COM_ISHOP_ORDER_SUM')?></th>
-            <th><?=JText::_('COM_ISHOP_ORDER_STATUS')?></th>
-            <th class="center"><?=JText::_('COM_ISHOP_ORDER_INFO')?></th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($this->items as $item):?>
-        <tr>
-            <td><?= $item->id?></td>
-            <td><?= $this->model->get_order_dt($item->order_dt)?></td>
-            <td><?= (int)$item->sum?$item->sum:JTEXT::_('COM_ISHOP_MANAGER_CENA')?></td>
-            <td><?= $this->model->get_order_status($item->order_status_id)?></td>
-            <td class="center">
-                <a href="<?=$href.$item->id?>" title="<?=JText::_('COM_ISHOP_ORDER_INFO')?>">
-                    <img src="<?=$src?>" alt="<?=JText::_('COM_ISHOP_ORDER_INFO')?>"/>
-                </a>
-            </td>
-        </tr>
-        <?php endforeach;?>
-    </tbody>
-</table>
+<div class="cart">
+    <table>
+        <thead>
+            <tr>
+                <th><span class="wr"><?=JText::_('COM_ISHOP_ORDER_ID')?></span></th>
+                <th><span class="wr"><?=JText::_('COM_ISHOP_ORDER_DT')?></span></th>
+                <th><span class="wr"><?=JText::_('COM_ISHOP_ORDER_SUM')?></span></th>
+                <th><span class="wr"><?=JText::_('COM_ISHOP_ORDER_STATUS')?></span></th>
+                <th class="center"><span class="wr"><?=JText::_('COM_ISHOP_ORDER_INFO')?></span></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($this->items as $item):?>
+            <tr>
+                <td><span class="wr"><?= $item->id?></span></td>
+                <td><span class="wr"><?= $this->model->get_order_dt($item->order_dt)?></span></td>
+                <td><span class="wr"><?= (int)$item->sum?$item->sum:JTEXT::_('COM_ISHOP_MANAGER_CENA')?></span></td>
+                <td><span class="wr"><?= $this->model->get_order_status($item->order_status_id)?></span></td>
+                <td class="center">
+                    <span class="wr"><a href="<?=$href.$item->id?>" title="<?=JText::_('COM_ISHOP_ORDER_INFO')?>">
+                            <img src="<?=$src?>" alt="<?=JText::_('COM_ISHOP_ORDER_INFO')?>"/>
+                        </a></span>
+                </td>
+            </tr>
+            <?php endforeach;?>
+        </tbody>
+    </table>
+</div>

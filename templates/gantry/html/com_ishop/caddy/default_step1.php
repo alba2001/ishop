@@ -101,7 +101,7 @@ $caddy = JFactory::getApplication()->getUserState('com_ishop.caddy');
                     <a href="/" class="button prev">Назад</a>
                 </th>
         		<th colspan="2" class="right">
-                    <span class="nowrap">
+                    <div class="nowrap">
             			<span class="gray-sum">
             				<?=JTEXT::_('COM_ISHOP_ITOGO')?>:
             			</span>
@@ -111,7 +111,7 @@ $caddy = JFactory::getApplication()->getUserState('com_ishop.caddy');
     	    			<span class="ruble">
     	    				<?=JTEXT::_('COM_ISHOP_RUB')?>
     	    			</span>
-                    </span>
+                    </div>
         		</th>
         		<th colspan="2" class="right last">
                      <a href="<?php echo JUri::base().'sposob-oplaty'?>" class="button next" />Далее</a>

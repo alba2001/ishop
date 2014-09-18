@@ -11,7 +11,7 @@ defined('_JEXEC') or die;
 ?>
 <div id="mod_caddy_ishop">
     <form 
-        action="<?php echo JRoute::_('index.php'); ?>" 
+        action="<?php echo '/oformlenie-zakaza'; ?>" 
         method="post" 
         name="mod_caddy"
         class="btn-header"

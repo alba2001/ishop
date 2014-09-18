@@ -19,10 +19,7 @@ defined('_JEXEC') or die;
             <input type="text" id="mod_ishop_search_text" name="ishop_search_data[text]" value="<?=$ishop_search_data['text']?>" placeholder="" > 
         </div>   
 
-        <div class="block">
-            <label for="mod_ishop_search_brand">
-                <span><?php echo JText::_('MOD_ISHOP_SEARCH_BRAND')?>: </span>
-            </label>
+        <div class="block select">
             <?=$brands?>
         </div>
 
@@ -46,17 +43,14 @@ defined('_JEXEC') or die;
             </label>
         </div>
 
-        <div class="block">
-            <label for="mod_ishop_search_category">
-                <span><?php echo JText::_('MOD_ISHOP_SEARCH_CATEGORY')?>: </span>
-            </label>
+        <div class="block select">
             <div id="mod_ishop_div_search_category">
                 <?=$categories?>
             </div>
         </div>
         
 
-        <div class="block no-label last">
+      <div style="text-align:right;">
             <input type="submit" class="button" value="<?=JText::_('MOD_ISHOP_SEARCH_FIND')?>">        
         </div>
 

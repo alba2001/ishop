@@ -216,7 +216,9 @@ class IshopModelProduct extends JModelLegacy
             {
                 return $uri;
             }
-            $uri .= str_replace('kazanova/', '', $path).'/'.$product_id;
+            $ar_path = explode('/', $path);
+            $site_alias =  $ar_path[0];
+            $uri .= str_replace('/', '/'.$site_alias.'_', $path).'/'.$product_id;
             
             return $uri;
         }

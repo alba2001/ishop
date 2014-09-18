@@ -80,60 +80,61 @@ else
 					</td>
 				</tr>
 
-				<?php if(isset($this->item->desc) AND $this->item->desc):?>
-					<tr>
-						<td class="left">
-							<span class="title">
-								<?= JText::_('COM_ISHOP_OPISANIJE').': ' ?>
-							</span>
-						</td>
-						<td class="right">
-							<span class="val">
-								<?=$this->item->desc?>
-							</span>
-						</td>
-					</tr>
-				<?php endif;?>
-
 			</tbody>
 
 		</table>
-		<div class="button-block">
-
-                        <input class="addButton button" id="add_<?php echo $this->item->id?>" type="button" value="Купить"
-                                onclick="ishop_caddy_add({
-                                action:'<?php echo JRoute::_('index.php'); ?>',
-                                data:{
-                                        option:     'com_ishop',
-                                        task:       'caddy.add',
-                                        item_id:    '<?php echo $this->item->id?>',
-                                        '<?=$token;?>':'1'
-                                        }
-                                });"
-                        />		
-                    
-				</div>
-
-				<div class="price-block">
-					<div>Цена:</div>
-					<?php $prises = ComponentHelper::getPrices($this->item->id); ?>
-
-					<?php if((int)$prises['cena_tut']):?>
-						<span id="item_cena_tut" class="item-price">
-							<?=number_format($prises['cena_tut'], 0, '.', ' ') . ' '?>
-						</span>
-						<span class="currency">
-							<?=JTEXT::_('COM_ISHOP_RUB')?>
-						</span>
-					<?php else:?>
-						<?=' '.JTEXT::_('COM_ISHOP_MANAGER_CENA')?>
-					<?php endif?>
-				</div>	
-
+		<div class="wr-bar">
+			<div class="button-block">
+			
+			                        <input class="addButton button" id="add_<?php echo $this->item->id?>" type="button" value="Купить"
+			                                onclick="ishop_caddy_add({
+			                                action:'<?php echo JRoute::_('index.php'); ?>',
+			                                data:{
+			                                        option:     'com_ishop',
+			                                        task:       'caddy.add',
+			                                        item_id:    '<?php echo $this->item->id?>',
+			                                        '<?=$token;?>':'1'
+			                                        }
+			                                });"
+			                        />		
+			                    
+					</div>
+			
+					<div class="price-block">
+						<div>Цена:</div>
+						<?php $prises = ComponentHelper::getPrices($this->item->id); ?>
+			
+						<?php if((int)$prises['cena_tut']):?>
+							<span id="item_cena_tut" class="item-price">
+								<?=number_format($prises['cena_tut'], 0, '.', ' ') . ' '?>
+							</span>
+							<span class="currency">
+								<?=JTEXT::_('COM_ISHOP_RUB')?>
+							</span>
+						<?php else:?>
+							<?=' '.JTEXT::_('COM_ISHOP_MANAGER_CENA')?>
+						<?php endif?>
+					</div>
+		</div>
+				
+				
+				<?php 
+					// Социальнве закладки
+					echo JHTML::_('content.prepare', '{loadposition social_bookmarks}'); 
+				?>
         </div>
 </section>
 				
-
+<?php if(isset($this->item->desc) AND $this->item->desc):?>
+<ul class="tabs" role="tablist">
+  <li class="active"><a href="#desc" role="tab" data-toggle="tab"><?= JText::_('COM_ISHOP_OPISANIJE').': ' ?></a></li>
+</ul>
+<div class="tab-content grey">
+	<div id="desc" class="tab-pane active">
+	  <?=$this->item->desc?>
+	</div>
+</div>
+<?php endif;?>
 
 <?php endif ?>
 <script src="<?=JURI::root()?>components/com_ishop/assets/js/caddy.js"></script>
@@ -144,11 +145,15 @@ else
         $(".fancybox").fancybox();
     });
 </script>
+
+<div class="featured-products">
 <?php
+//  Рекомендуемые товары
+echo JHTML::_('content.prepare', '{loadposition recomended_products}');
+?>
+</div>
 
-// Социальнве закладки
-echo JHTML::_('content.prepare', '{loadposition social_bookmarks}');
-
+<?php
 // Комментарии
   $comments = JPATH_ROOT.'/components/com_jcomments/jcomments.php';
   if (file_exists($comments)) {
@@ -156,5 +161,3 @@ echo JHTML::_('content.prepare', '{loadposition social_bookmarks}');
     echo JComments::showComments($this->item->id, 'com_ishop', $this->item->name);
   }
   
-//  Рекомендуемые товары
-echo JHTML::_('content.prepare', '{loadposition recomended_products}');
