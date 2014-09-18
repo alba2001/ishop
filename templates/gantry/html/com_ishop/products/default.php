@@ -12,8 +12,12 @@ defined('_JEXEC') or die;
 
 //var_dump($this->products_group);exit;
 //$izdelie = $this->_model->getState('usearch_data.izdelie',0);
+?>
 
-if($this->show_menu_groups):?>
+<?php if($this->is_search_result):?>
+<h1><?=  JText::_('COM_ISHOP_SEARCH_RESULT')?></h1>
+<?php endif;?>
+<?php if($this->show_menu_groups):?>
 <ul class="tabs">
 	<li class="first">
 		<a class="<?=$this->products_group=='1'?'active':''?>" href="<?php echo JRoute::_('novinki')?>" class="trigger"><?=  JText::_('COM_ISHOP_PRODUCT_NEW')?></a>

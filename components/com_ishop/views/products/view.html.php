@@ -34,6 +34,8 @@ class IshopViewProducts extends JViewLegacy {
         $this->pagination	= $this->get('Pagination');
         $this->caddy = JFactory::getApplication()->getUserState('com_ishop.caddy', array());
         $this->sort_order_products_list = $this->sort_order_select();
+        $this->is_search_result = JRequest::getVar('ishop_search_data')?TRUE:FALSE;
+        
 
         // Check for errors.
         if (count($errors = $this->get('Errors'))) {
