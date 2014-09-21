@@ -199,7 +199,6 @@ function file_url($url){
   ;
 }
                         
-			/*<img src="<?=incase::thumb('http://dummyimage.com/800x600/4d494d/686a82.jpg', 200, 200, false)?>">*/
 			function thumb($input, $id, $a=0, $b=0, $proportional=TRUE){
 				$dummy = 'images/dummy.png';
                                 $ds = DIRECTORY_SEPARATOR;
@@ -209,7 +208,7 @@ function file_url($url){
                                 
                                 if (!preg_match('/gif|ico|jpg|jpeg|png|tiff|tif$/', strtolower($input), $regs))
                                 {
-                                    return $dummy;
+//                                    return $dummy;
                                 }
 
 				// create cache folder
@@ -218,7 +217,7 @@ function file_url($url){
                                     @mkdir($dir, 0777, true);
                                 }
                                 
-				$ext = '.' . $regs[0];
+				$ext = isset($regs[0])?'.'.$regs[0]:'.jpg';
 
 				$img_base = $img_now = 'ishop_'.$id.$ext;
                                 if($a AND $b )
