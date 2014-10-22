@@ -157,16 +157,15 @@ class IshopModelProduct extends JModelAdmin
          */
         public function save_product($data)
         {
-            
             $id = $this->_get_saved_product($data);
             if((int)$data['cena_tut']===0 AND (int)$data['cena_mag']!==0)
             {
                 $data['cena_tut'] = $data['cena_mag'];
             }
             
+            $table = $this->getTable('Product');
             if($id) 
             {
-                $table = $this->getTable('Product');
                 $table->load($id);
                 
                 // Записываем цену здесь как цену в магазине, 
@@ -175,10 +174,20 @@ class IshopModelProduct extends JModelAdmin
                 {
                     $data['cena_tut'] = $table->cena_tut;
                 }
-                return $table->save($data);
+                if(!$table->save($data))
+                {
+                    return 0;
+                }
             }
-            
-            return $this->save($data);
+            else
+            {
+                if(!$table->save($data))
+                {
+                    return 0;
+                }
+                $id = $this->_get_saved_product($data);
+            }
+            return $id;
         }
         
         /**
